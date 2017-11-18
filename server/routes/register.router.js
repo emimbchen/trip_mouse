@@ -26,13 +26,13 @@ router.post('/', function(req, res, next) {
 
     Users.create(userToSave, function(err, post) {
       console.log('post /register -- User.create');
-         if(err) {
-           console.log('post /register -- User.create -- failure');
-           res.sendStatus(500);
-         } else {
-           console.log('post /register -- User.create -- success');
-           res.sendStatus(201);
-         }
+        if(err) {
+          console.log('post /register -- User.create -- failure');
+          res.sendStatus(500);
+        } else {
+          console.log('post /register -- User.create -- success');
+          res.sendStatus(201);
+        }
     });
 });
 
