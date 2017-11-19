@@ -7,9 +7,8 @@ var tripObject = require('../models/schemas.js');
 
 //route to post new trips
 router.post('/', function (req, res) {
-    console.log('in router Post!');
-    console.log(req.body);
     var tripToAdd = new tripObject(req.body);
+    tripToAdd.userId = req.user._id;
     tripToAdd.save(function (err, data) {
         if (err) {
             console.log("Error in the trip post", err);
@@ -19,6 +18,19 @@ router.post('/', function (req, res) {
         }
     });
 });
+
+//route to get all trips
+router.get('/', function (req, res) {
+    tripObject.find({userId: req.user._id}).sort({returnDate: 'desc'}).exec(function (err, foundObjects) {
+        if (err) {
+            console.log('error', err);
+            res.sendStatus(500);
+        } else {
+            res.send(foundObjects);
+        }
+    });
+})
+
 
 
 
