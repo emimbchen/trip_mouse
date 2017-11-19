@@ -5,9 +5,14 @@
     <h1>Make a New Trip!</h1>
     <md-button class="md-raised" href="#/newtrip">Lets Go!</md-button>
     <h2>Current Trips!</h2>
-    <div ng-repeat="trip in uc.trips">
+    <div ng-repeat="trip in uc.currentTrips">
         <a href="#/info">{{trip.tripName}}</a>
-        {{trip.returnDate}}
+        {{trip.leaveDate | date}} - {{trip.returnDate | date}}
     </div>
     <h2>Past Trips!</h2>
+    <div ng-repeat="trip in uc.pastTrips">
+        <a href="#/info">{{trip.tripName}}</a>
+        {{trip.leaveDate | date}} - {{trip.returnDate | date}}
+
+    </div>
 </div>

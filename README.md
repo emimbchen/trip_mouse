@@ -1,4 +1,4 @@
-# Name of Project
+# Trip Mouse
 
 One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.
 
@@ -49,7 +49,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* Name of author(s)
+* Emi Chen
 
 
 ## Acknowledgments
