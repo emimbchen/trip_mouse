@@ -3,12 +3,12 @@ var Schema = mongoose.Schema;
 
 //nested transportation schema
 var TransportationSchema = new Schema({
+    type: String,
     from: String,
     to: String,
     date: Date,
     leaveTime: Date,
     arriveTime: Date,
-    layoverInfo: String,
     price: Number,
     details: String
 

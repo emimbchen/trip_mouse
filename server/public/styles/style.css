@@ -40,6 +40,12 @@ body, html {
   text-align: center;
 }
 
+#infoDiv {
+  background-color: white;
+  padding-bottom: 15%;
+  text-align: center;
+}
+
 .message {
   padding: 10px 0;
 }
@@ -99,5 +105,12 @@ li a:hover {
 h1 {
   margin-top: 0px;
   padding: 10px;
+}
+
+#mousePic {
+  float: right;
+  height: 150px;
+  width: auto;
+  margin-top: -76px;
 }
 

@@ -1,6 +1,33 @@
 <div ng-include="'views/partials/tripnav.html'"></div>
 <div class="container">
-  <p>
-    In Info
-  </p>
+    <div>{{ic.currentTrip}}</div>
+ <div id="infoDiv">
+   <md-content>
+       <md-tabs>
+           <md-tab label="General Details">
+           <md-content>
+               <p>Details and Stuff</p>
+           </md-content>
+        </md-tab>
+        <md-tab label="Transportation">
+        <md-content>
+            <md-button>New Transportation</md-button>
+            <p>Details</p>
+        </md-content>
+        </md-tab>
+        <md-tab label="Lodging">
+        <md-content>
+            <md-button>New Lodging</md-button>
+            <p>Details</p>
+        </md-content>
+        </md-tab>
+        <md-tab label="Activities">
+        <md-content>
+            <md-button>New Activity</md-button>
+            <p>Details</p>
+        </md-content>
+        </md-tab>
+       </md-tabs>
+   </md-content>
+ </div>
 </div>
