@@ -38,7 +38,6 @@ var ActivitiesSchema = new Schema({
 //trip collection schema
 var TripSchema = new Schema({
     userId: Schema.Types.ObjectId,
-    tripName: String,
     tripDestination: String,
     leaveDate: Date,
     returnDate: Date,

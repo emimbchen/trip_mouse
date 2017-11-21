@@ -1,33 +1,58 @@
 <div ng-include="'views/partials/tripnav.html'"></div>
 <div class="container">
-    <div>{{ic.currentTrip}}</div>
- <div id="infoDiv">
-   <md-content>
-       <md-tabs>
-           <md-tab label="General Details">
-           <md-content>
-               <p>Details and Stuff</p>
-           </md-content>
-        </md-tab>
-        <md-tab label="Transportation">
-        <md-content>
-            <md-button>New Transportation</md-button>
-            <p>Details</p>
-        </md-content>
-        </md-tab>
-        <md-tab label="Lodging">
-        <md-content>
-            <md-button>New Lodging</md-button>
-            <p>Details</p>
-        </md-content>
-        </md-tab>
-        <md-tab label="Activities">
-        <md-content>
-            <md-button>New Activity</md-button>
-            <p>Details</p>
-        </md-content>
-        </md-tab>
-       </md-tabs>
-   </md-content>
- </div>
+
+
+    <div id="infoDiv">
+        <div  ng-hide="ic.showEdit">
+            <h1>{{ic.userService.currentTrip.data.tripDestination}}
+                <i ng-click="ic.editInputs()" class="material-icons">edit</i>
+                <br/>
+                <span id="dates">{{ic.userService.currentTrip.data.leaveDate | date}} - {{ic.userService.currentTrip.data.returnDate | date}}</span>
+            </h1>
+            
+            <div layout="row">
+                <h3>Travellers: {{ic.userService.currentTrip.data.travellers}}</h3>
+                <h3>Cost Per Person: </h3>
+                <h3>Total Cost:</h3>
+            </div>
+        </div>
+
+        <!-- edit div shows up when edit button is pressed-->
+        <div ng-show="ic.showEdit">
+            <h1>
+            <input type="text" ng-model="ic.tripObject.tripDestination" placeholder={{ic.userService.currentTrip.data.tripDestination}}>
+            </h1>
+            <label>Number of Travellers: </label>
+            <input type="text" ng-model="ic.tripObject.travellers"placeholder={{ic.userService.currentTrip.data.travellers}}>
+            <md-datepicker ng-model="ic.tripObject.leaveDate" md-placeholder= {{ic.userService.currentTrip.data.leaveDate}} ></md-datepicker>
+            <md-datepicker ng-model="ic.tripObject.returnDate" md-placeholder={{ic.userService.currentTrip.data.returnDate}}></md-datepicker><br/>
+            <md-button ng-click="ic.editTrip(ic.tripObject)">Save</md-button>
+            <md-button ng-click="ic.hideEdit()">Cancel</md-button>
+        </div>
+    </div>
+
+    <md-content>
+        <md-tabs>
+            <md-tab label="Transportation">
+                <md-content>
+                    <md-button class="md-primary md-raised" ng-click="ic.showAdvanced($event)">New Transportation</md-button>
+                    <p>Details</p>
+                </md-content>
+            </md-tab>
+            <md-tab label="Lodging">
+                <md-content>
+                    <md-button class="md-primary md-raised" ng-click="ic.showAdvanced1($event)">New Lodging</md-button>
+                    <p>Details</p>
+                </md-content>
+            </md-tab>
+            <md-tab label="Activities">
+                <md-content>
+                    <md-button class="md-primary md-raised" ng-click="ic.showAdvanced2($event)">New Activity</md-button>
+                    <p>Details</p>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+
+</div>
 </div>

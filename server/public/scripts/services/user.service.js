@@ -7,7 +7,7 @@ myApp.service('UserService', function($http, $location){
   self.tripObject = {};
   //object to hold active trip from selectTrip();
   self.currentTrip = {};
-  var selectedTrip=[];
+  
   var today = (new Date()).toISOString();
 
   //function to select current trip
@@ -43,10 +43,8 @@ myApp.service('UserService', function($http, $location){
 
   //gets selected trip and details
   self.getThisTrip = function (id) {
-    console.log(id);
     $http.get('/trip/' + id).then(function (response) {
-      selectedTrip.push(response.data); 
-      self.currentTrip.data = selectedTrip;
+      self.currentTrip.data = response.data;
       console.log('current trip details', self.currentTrip);
     }).catch(function (error) {
       console.log('failure on Get specific trip route');

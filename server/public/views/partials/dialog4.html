@@ -1,0 +1,31 @@
+<md-dialog class="dialog" aria-label="Trip">
+    <form ng-cloak>
+        <h1>Edit Trip/h1>
+        <div class="input">
+            <md-input-container>
+                <label>Activity:</label>
+                <input type="text" ng-model="activity.name">
+            </md-input-container>
+            <md-input-container>
+                <label>Location:</label>
+                <input type="text" ng-model="activity.location">
+            </md-input-container>
+            <md-input-container>
+                <md-datepicker ng-model="activity.date" required md-placeholder="Activity Date"></md-datepicker>
+            </md-input-container>
+            <md-input-container>
+                <label>Website:</label>
+                <input type="url" ng-model="activity.website">
+            </md-input-container>
+            <md-input-container>
+                <label>Price:</label>
+                <input type="text" ng-model="activity.price">
+            </md-input-container>
+            <md-input-container>
+                <label>Notes:</label>
+                <input type="text" ng-model="activity.notes">
+            </md-input-container>
+            <md-button type="submit" class="md-raised">Submit</md-button>
+        </div>
+    </form>
+</md-dialog>

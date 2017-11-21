@@ -1,0 +1,39 @@
+<md-dialog class="dialog" aria-label="Transportation">
+    <form ng-cloak>
+        <h1>New Transportation</h1>
+        <div  class="input">
+        <md-input-container>
+            <label>Form of Transportation:</label>
+            <input type="text" ng-model="transportation.type">
+        </md-input-container>
+        <md-input-container>
+            <label>Departure City:</label>
+            <input type="text" ng-model="transportation.from">
+        </md-input-container>
+        <md-input-container>
+            <label>Arrival City:</label>
+            <input type="text" ng-model="transportation.to">
+        </md-input-container>
+        <md-input-container>
+            <md-datepicker ng-model="trasportation.date" required md-placeholder="Date"></md-datepicker>
+        </md-input-container>
+        <md-input-container>
+            <label>Departure Time:</label>
+            <input type="time" ng-model="transportation.timeD">
+        </md-input-container>
+        <md-input-container>
+            <label>Arrival Time:</label>
+            <input type="time" ng-model="transportation.timeA">
+        </md-input-container>
+        <md-input-container>
+            <label>Price:</label>
+            <input type="text" ng-model="transportation.price">
+        </md-input-container>
+        <md-input-container>
+            <label>Notes:</label>
+            <input type="text" ng-model="transportation.notes">
+        </md-input-container>
+        <md-button type="submit" class="md-raised">Submit</md-button>
+        </div>
+    </form>
+</md-dialog>

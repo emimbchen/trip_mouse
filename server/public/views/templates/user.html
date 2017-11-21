@@ -5,12 +5,12 @@
     <md-button class="md-raised" href="#/newtrip">Make A New Trip</md-button>
     <h2>Future Trips</h2>
     <div ng-repeat="trip in uc.tripObject.currentTrips">
-        <a href="#/info" ng-click="uc.selectTrip(trip._id)">{{trip.tripName}}</a><br/>
+        <a ng-href="#/info/{{trip._id}}" >{{trip.tripDestination}}</a><br/>
         {{trip.leaveDate | date}} - {{trip.returnDate | date}}
     </div>
     <h2>Past Trips</h2>
     <div ng-repeat="trip in uc.tripObject.pastTrips">
-        <a href="#/info">{{trip.tripName}}</a><br/>
+        <a href="#/info/{{trip._id}}">{{trip.tripDestination}}</a><br/>
         {{trip.leaveDate | date}} - {{trip.returnDate | date}}
 
     </div>

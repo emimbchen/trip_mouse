@@ -1,0 +1,38 @@
+<md-dialog class="dialog" aria-label="Lodging">
+    <form ng-cloak>
+        <h1>New Lodging Entree</h1>
+        <div class="input">
+            <md-input-container>
+                <label>Name:</label>
+                <input type="text" ng-model="lodging.name">
+            </md-input-container>
+            <md-input-container>
+                <md-datepicker ng-model="lodging.checkI" required md-placeholder="Check-In"></md-datepicker>
+            </md-input-container>
+            <md-input-container>
+                <md-datepicker ng-model="lodging.checkO" required md-placeholder="Check-Out"></md-datepicker>
+            </md-input-container>
+            <md-input-container>
+                <label>Address:</label>
+                <input type="text" ng-model="lodging.address">
+            </md-input-container>
+            <md-input-container>
+                <label>Phone Number:</label>
+                <input type="tel" ng-model="lodging.phone">
+            </md-input-container>
+            <md-input-container>
+                <label>Website:</label>
+                <input type="url" ng-model="lodging.website">
+            </md-input-container>
+            <md-input-container>
+                <label>Price:</label>
+                <input type="text" ng-model="lodging.price">
+            </md-input-container>
+            <md-input-container>
+                <label>Notes:</label>
+                <input type="text" ng-model="lodging.notes">
+            </md-input-container>
+            <md-button type="submit" class="md-raised">Submit</md-button>
+        </div>
+    </form>
+</md-dialog>
