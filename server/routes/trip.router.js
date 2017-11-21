@@ -46,6 +46,16 @@ router.get('/:id', function (req, res) {
     });
 })
 
+//route to find and update trip with edited info
+router.put('/:id', function(req, res){
+    var sentUpdate = req.body;
+    var id = req.params.id;
+    console.log(sentUpdate);
+    // tripObject.findOne({_id: id}, function (err, user){
+
+    // }
+});
+
 
 
 
