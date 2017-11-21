@@ -28,6 +28,7 @@
             <md-datepicker ng-model="ic.tripObject.returnDate" md-placeholder={{ic.userService.currentTrip.data.returnDate}}></md-datepicker><br/>
             <md-button ng-click="ic.editTrip(ic.tripObject)">Save</md-button>
             <md-button ng-click="ic.hideEdit()">Cancel</md-button>
+            <md-button ng-href="#/user" ng-click="ic.deleteTrip()">Delete Trip</md-button>
         </div>
     </div>
 

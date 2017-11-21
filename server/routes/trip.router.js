@@ -51,9 +51,27 @@ router.put('/:id', function(req, res){
     var sentUpdate = req.body;
     var id = req.params.id;
     console.log(sentUpdate);
-    // tripObject.findOne({_id: id}, function (err, user){
+    console.log(id);
+    tripObject.findOne({_id: id}, function (err, user){
+    
+    // tripObject.save(function(err,results){
+    //     if(err) console.log(err);
+    //     console.log(results)
+    })
+});
 
-    // }
+//route to delete an entire tirp
+router.delete('/:id', function(req, res){
+    var id = req.params.id;
+    console.log(id);
+    tripObject.findByIdAndRemove({_id: id}, function(err, user){
+        if (err){
+            console.log(err);
+            res.sendStatus(500);
+        } else {
+            res.send(201);
+        }
+    });
 });
 
 

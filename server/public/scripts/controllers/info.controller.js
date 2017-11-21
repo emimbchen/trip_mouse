@@ -87,5 +87,13 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
     })
   }
 
+  vm.deleteTrip = function(){
+    $http.delete('/trip/' + tripId).then(function(response){
+      console.log('delete sent');
+    }).catch(function(error){
+      console.log('delete not sent');
+    })
+  }
+
 
 });
