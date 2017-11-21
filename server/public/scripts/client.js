@@ -22,7 +22,7 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/info', {
+    .when('/info/:tripId', {
       templateUrl: '/views/templates/info.html',
       controller: 'InfoController as ic',
       resolve: {
@@ -36,6 +36,24 @@ myApp.config(function($routeProvider, $locationProvider) {
       controller: 'NewTripController as nc',
       resolve: {
         getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/usernav', {
+      templateUrl: 'views/partials/user.html',
+      controller: 'PartialController as pc',
+      resolve: {
+        getuser: function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/tripnav', {
+      templateUrl: 'views/partials/tripnav.html',
+      controller: 'PartialController as pc',
+      resolve: {
+        getuser: function(UserService){
           return UserService.getuser();
         }
       }
