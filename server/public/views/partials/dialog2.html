@@ -4,35 +4,35 @@
         <div class="input">
             <md-input-container>
                 <label>Name:</label>
-                <input type="text" ng-model="lodging.name">
+                <input type="text" ng-model="ic.lodging.name">
             </md-input-container>
             <md-input-container>
-                <md-datepicker ng-model="lodging.checkI" required md-placeholder="Check-In"></md-datepicker>
+                <md-datepicker ng-model="ic.lodging.checkIn" required md-placeholder="Check-In"></md-datepicker>
             </md-input-container>
             <md-input-container>
-                <md-datepicker ng-model="lodging.checkO" required md-placeholder="Check-Out"></md-datepicker>
+                <md-datepicker ng-model="ic.lodging.checkOut" required md-placeholder="Check-Out"></md-datepicker>
             </md-input-container>
             <md-input-container>
                 <label>Address:</label>
-                <input type="text" ng-model="lodging.address">
+                <input type="text" ng-model="ic.lodging.address">
             </md-input-container>
             <md-input-container>
                 <label>Phone Number:</label>
-                <input type="tel" ng-model="lodging.phone">
+                <input type="tel" ng-model="ic.lodging.phoneNumber">
             </md-input-container>
             <md-input-container>
                 <label>Website:</label>
-                <input type="url" ng-model="lodging.website">
+                <input type="text" ng-model="ic.lodging.website">
             </md-input-container>
             <md-input-container>
                 <label>Price:</label>
-                <input type="text" ng-model="lodging.price">
+                <input type="text" ng-model="ic.lodging.price">
             </md-input-container>
             <md-input-container>
                 <label>Notes:</label>
-                <input type="text" ng-model="lodging.notes">
+                <input type="text" ng-model="ic.lodging.details">
             </md-input-container>
-            <md-button type="submit" class="md-raised">Submit</md-button>
+            <md-button ng-click="ic.newDetail(ic.lodging, 'lodging')" class="md-raised">Submit</md-button>
         </div>
     </form>
 </md-dialog>

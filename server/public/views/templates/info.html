@@ -20,13 +20,13 @@
         <!-- edit div shows up when edit button is pressed-->
         <div ng-show="ic.showEdit">
             <h1>
-            <input type="text" ng-model="ic.tripObject.tripDestination" placeholder={{ic.userService.currentTrip.data.tripDestination}}>
+            <input type="text" ng-model="ic.userService.currentTrip.data.tripDestination">
             </h1>
             <label>Number of Travellers: </label>
-            <input type="text" ng-model="ic.tripObject.travellers"placeholder={{ic.userService.currentTrip.data.travellers}}>
-            <md-datepicker ng-model="ic.tripObject.leaveDate" md-placeholder= {{ic.userService.currentTrip.data.leaveDate}} ></md-datepicker>
-            <md-datepicker ng-model="ic.tripObject.returnDate" md-placeholder={{ic.userService.currentTrip.data.returnDate}}></md-datepicker><br/>
-            <md-button ng-click="ic.editTrip(ic.tripObject)">Save</md-button>
+            <input type="text" ng-model="ic.userService.currentTrip.data.travellers">
+            <md-datepicker ng-model="ic.userService.currentTrip.data.leaveDate"></md-datepicker>
+            <md-datepicker ng-model="ic.userService.currentTrip.data.returnDate"></md-datepicker><br/>
+            <md-button ng-click="ic.editTrip(ic.userService.currentTrip.data)">Save</md-button>
             <md-button ng-click="ic.hideEdit()">Cancel</md-button>
             <md-button ng-href="#/user" ng-click="ic.deleteTrip()">Delete Trip</md-button>
         </div>

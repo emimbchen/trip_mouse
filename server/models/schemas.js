@@ -31,6 +31,7 @@ var ActivitiesSchema = new Schema({
     activity: String,
     where: String,
     when: Date,
+    website: String,
     price: Number,
     details: String
 });
