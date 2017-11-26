@@ -64,7 +64,7 @@
                         </md-card-content>
                         </div>
                         <!-- div for transportation edit -->
-                        <div ng-show= "ic.selectedDetail === $index">
+                        <md-card ng-show= "ic.selectedDetail === $index">
                             <md-card-content>
                                     <md-input-container>
                                     <input type="text" ng-model="transportation.from">
@@ -102,15 +102,85 @@
                                 <md-button ng-click="ic.hideEdit()">Cancel</md-button>
                                 </md-card-actions>
                             </md-card-content>
-                        </div>
+                        </md-card>
                         <!-- end transportation edit -->
+                    </md-card>
+                </md-content>
+            </md-tab>
+            <!-- new -->
+           <md-tab label="Lodging">
+               <md-content class="tabDiv">
+                    <md-button class="md-primary md-raised" ng-click="ic.showAdvanced1($event)">New Lodging</md-button>
+                    <md-card ng-repeat="lodging in ic.userService.currentTrip.data.lodging track by $index">
+                    <!-- div for nonedit mode -->
+                    <div ng-hide="ic.selectedDetail === $index">
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">hotel</md-icon>
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title">{{lodging.name}}
+                                    <md-icon ng-hide="$index === ic.selectedItem" ng-click="ic.setItem($index)" class="material-icons">arrow_drop_down</md-icon>
+                                    <md-icon ng-show="$index === ic.selectedItem" ng-click="ic.hideEdit()" class="material-icons">arrow_drop_up</md-icon>
+                                </span>
+                                <span class="md-subhead">{{lodging.checkIn | date}}- {{lodging.checkOut | date}}</span>
+                            </md-card-header-text>
+                            </md-card-header>
+                            <!-- hidden details until expanded -->
+                            <md-card-content ng-show='$index === ic.selectedItem'>
+                                <p>{{lodging.address}}</p>
+                                <p>{{lodging.phoneNumber}}</p>
+                                <p>{{lodging.website}}</p>
+                                <p>{{lodging.price}}</p>
+                                <p>{{lodging.details}}</p>
+                                <md-card-actions layout="row" layout-align="start center">
+                                    <md-button ng-click="ic.editDetail($index)">Edit</md-button>
+                                    <md-button ng-click="ic.newDetail(lodging, 'lodging', 'delete', lodging._id)">Delete</md-button>
+                                    <md-button ng-click="ic.confirmDetail()">Confirm</md-button>
+                                </md-card-actions>
+                            </md-card-content>
+                            </div>
+                            <!-- div for lodging edit -->
+                            <div ng-show="ic.selectedDetail === $index">
+                                <md-card-content>
+                                <md-input-container>
+                                    <input type="text" ng-model="lodging.name">
+                                </md-input-container>
+                                <md-datepicker ng-model="lodging.checkIn"></md-datepicker>
+                                    <md-datepicker ng-model="lodging.checkOut"></md-datepicker>
+                                    <md-input-container>
+                                        <input type="text" ng-model="lodging.address">
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <input type="tel" ng-model="lodging.phoneNumber">
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <input type="text" ng-model="lodging.website">
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <input type="text" ng-model="lodging.price">
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <input type="text" ng-model="lodging.details">
+                                    </md-input-container>
+                                    <md-card-actions layout="row" layout-align="start center">
+                                        <md-button ng-click="ic.newDetail(lodging, 'lodging', 'edit' , lodging._id)">Submit</md-button>
+                                        <md-button ng-click="ic.hideEdit()">Cancel</md-button>
+                                    </md-card-actions>
+                                </md-card-content>
+                            </div>
+                            <!-- end of lodging edit -->
                     </md-card>
                 </md-content>
             </md-tab>
             <md-tab label="Lodging">
                 <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced1($event)">New Lodging</md-button>
-                    <div class="detailInfo" ng-repeat="lodging in ic.userService.currentTrip.data.lodging">
+                    <md-card ng-repeat="lodging in ic.userService.currentTrip.data.lodging track by $index">
+                        <!-- div for non edit mode -->
+                        <div ng-hide = "ic.selectedDetail === $index">
+                            
+                        </div>
                         <span>{{lodging.name}}<i class="material-icons">keyboard_arrow_down</i></span>
                     </div>
                 </md-content>

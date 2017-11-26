@@ -125,34 +125,110 @@ router.put('/transportation/:id', function(req, res){
 router.put('/lodging/:id', function (req, res) {
     var id = req.params.id;
     var lodgingOb = req.body;
-    Trip.findOne({ _id: id }, function (err, trip) {
-        trip.lodging.push(lodgingOb);
-        trip.save(function (err) {
-            if (err) {
-                console.log(err);
-                res.sendStatus(500);
-            } else {
-                res.sendStatus(201);
-            }
-        });
-    });
+    console.log(lodgingOb);
+    switch (lodgingOb.action) {
+        case 'edit':
+            Trip.findOneAndUpdate({ "_id": id, "lodging._id": lodgingOb.detailId },
+                {
+                    "$set": {
+                        "lodging.$.name": lodgingOb.name,
+                        "lodging.$.checkIn": lodgingOb.checkIn,
+                        "lodging.$.checkOut": lodgingOb.checkOut,
+                        "lodging.$.address": lodgingOb.address,
+                        "lodging.$.phoneNumber": lodgingOb.phoneNumber,
+                        "lodging.$.website": lodgingOb.website,
+                        "lodging.$.price":  lodgingOb.price,
+                        "lodging.$.details": lodgingOb.details,
+                    }
+                }, function (err, trip) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                });
+            break;
+        case 'add':
+            Trip.findOne({ _id: id }, function (err, trip) {
+                trip.lodging.push(lodgingOb);
+                trip.save(function (err) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                });
+            });
+            break;
+        case 'delete':
+            Trip.update({ "_id": id },
+                { "$pull": { lodging: { _id: lodgingOb.detailId } } },
+                function (err, trip) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                }
+            );
+    }
 });
 
 //put for new activities
 router.put('/activities/:id', function (req, res) {
     var id = req.params.id;
     var activityOb = req.body;
-    Trip.findOne({ _id: id }, function (err, trip) {
-        trip.activities.push(activityOb);
-        trip.save(function (err) {
-            if (err) {
-                console.log(err);
-                res.sendStatus(500);
-            } else {
-                res.sendStatus(201);
-            }
-        });
-    });
+    console.log(transportationOb);
+    switch (activityOb.action) {
+        case 'edit':
+            Trip.findOneAndUpdate({ "_id": id, "activities._id": activityOb.detailId },
+                {
+                    "$set": {
+                        "activities.$.activity": activityOb.activity ,
+                        "activities.$.where": transportationOb.where,
+                        "activities.$.when": transportationOb.when,
+                        "activities.$.website": transportationOb.website,
+                        "activities.$.price": transportationOb.price,
+                        "activities.$.details": transportationOb.details,
+                    }
+                }, function (err, trip) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                });
+            break;
+        case 'add':
+            Trip.findOne({ _id: id }, function (err, trip) {
+                trip.activities.push(activityOb);
+                trip.save(function (err) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                });
+            });
+            break;
+        case 'delete':
+            Trip.update({ "_id": id },
+                { "$pull": { activities: { _id: activityOb.detailId } } },
+                function (err, trip) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                }
+            );
+    }
 });
 
 
