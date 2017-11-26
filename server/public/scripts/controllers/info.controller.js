@@ -4,7 +4,7 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   vm.userService = UserService;
   vm.thisTrip = UserService.currentTrip;
   vm.showEdit = false;
-  vm.transportOptions = ['Airplane', 'Train', 'Subway', 'Car', 'Taxi', 'Other'];
+  vm.transportOptions = [ {type: 'Airplane', icon: 'flight' }, { type: 'Train', icon: 'train'}, {type: 'Subway', icon: 'subway'}, {type: 'Car', icon: 'directions_car'}, {type: 'Taxi', icon: "local_taxi"}, {type: 'Other', icon: "navigation"}];
   
   var tripId = $routeParams.tripId;
   console.log(tripId);
@@ -76,9 +76,10 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   }
 
   //route to add a new detail
-  vm.newDetail = function(objectTosend, type) {
-    console.log('Submit Clicked');
-    console.log(objectTosend, type);
+  vm.newDetail = function(objectTosend, type, action, detailId) {
+    console.log(objectTosend, type, action, detailId);
+    objectTosend.action = action; 
+    objectTosend.detailId = detailId;
     $http.put('/trip/' + type + '/' + tripId, objectTosend).then(function (response) {
       console.log('new', type, 'sent');
       $mdDialog.hide();

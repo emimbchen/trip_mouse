@@ -31,43 +31,17 @@
             <md-button ng-href="#/user" ng-click="ic.deleteTrip()">Delete Trip</md-button>
         </div>
     </div>
-<!-- example -->
-<!-- <md-card>
-    <md-card-header>
-        <md-card-avatar>
-            <md-icon class="material-icons">flight</md-icon>
-        </md-card-avatar>
-        <md-card-header-text>
-            <span class="md-title">{{HTML5}}</span>
-            <span class="md-subhead">Learn HTML5 @TutorialsPoint.com<md-icon class="material-icons">arrow_drop_down</md-icon></span>
-        </md-card-header-text>
-    </md-card-header>
-
-    <md-card-content>
-        <md-card-actions layout="row" layout-align="start center">
-            <md-button>Edit</md-button>
-            <md-button>Delete</md-button>
-            <md-button>Confirm</md-button>
-            <md-card-icon-actions>
-                <md-button class="md-icon-button" aria-label="icon">
-                    <md-icon class="material-icons">add</md-icon>
-                </md-button>
-            </md-card-icon-actions>
-        </md-card-actions>
-    </md-card-content>
-</md-card> -->
-<!-- example -->
     <md-content class="tabDiv">
         <md-tabs class="tabDiv">
             <md-tab label="Transportation">
                 <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced($event)">New Transportation</md-button>
-                    
-                    <!-- new -->
                     <md-card ng-repeat="transportation in ic.userService.currentTrip.data.transportation">
+                        <!-- div for nonedit mode -->
+                        <div>
                         <md-card-header>
                             <md-card-avatar>
-                                <md-icon class="material-icons">flight</md-icon>
+                                <md-icon class="material-icons">{{transportation.type.icon}}</md-icon>
                             </md-card-avatar>
                             <md-card-header-text>
                             <!-- dont forget hide function -->
@@ -79,17 +53,42 @@
                         <md-card-content ng-hide="ic.expanded">
                             <p>{{transportation.leaveTime | date: 'shortTime'}}-{{transportation.arriveTime | date: 'shortTime'}}</p>
                             <p>{{transportation.price | currency}} Per Person</p>
-                            <p>{{transportation.notes}}</p>
+                            <p>{{transportation.details}}</p>
                             <p></p>
                             <md-card-actions layout="row" layout-align="start center">
-                                <md-button ng-click="ic.editDetail(transportation._id, 'transportation')">Edit</md-button>
-                                <md-button ng-click="ic.deleteDetail(transportation._id, 'transportation')">Delete</md-button>
-                                <md-button ng-click="ic.confirmDetail(transportation._id, 'transportation')">Confirm</md-button>
+                                <md-button ng-click="ic.editDetail()">Edit</md-button>
+                                <md-button ng-click="ic.newDetail(transportation, 'transportation', 'delete', transportation._id)">Delete</md-button>
+                                <md-button ng-click="ic.confirmDetail()">Confirm</md-button>
                             </md-card-actions>
                         </md-card-content>
-                    </md-card>
-                    <!-- new -->
+                        </div>
+                        <!-- div for transportation edit -->
+                        <div>
+                            <md-card-header>
+                                <md-card-avatar>
+                                    <md-icon class="material-icons">{{transportation.type.icon}}</md-icon>
+                                </md-card-avatar>
+                                <md-card-header-text>
+                                    <input type="text" ng-model="transportation.from">
+                                    <input type="text" ng-model="transportation.to">
+                                    <input type="text" ng-model="transportation.type.type">
+                                </md-card-header-text>
+                            </md-card-header>
+                            <md-card-content>
+                                <md-datepicker ng-model="transportation.date"></md-datepicker>
+                                <!-- time format isnt happy here -->
+                                <!-- <input type="time" ng-model="transportation.leaveTime">
+                                <input type="time" ng-model="transportation.arriveTime"> -->
+                                <!-- time formate fix above -->
+                                <input type="text" ng-model="transportation.price">
+                                <input type="text" ng-model="transportation.details">
+                                <md-card-actions layout="row" layout-align="start center">
+                                    <md-button ng-click="ic.newDetail(transportation, 'transportation', 'edit' , transportation._id)">Submit</md-button>
+                                </md-card-actions>
+                            </md-card-content>
+                        </div>
 
+                    </md-card>
                 </md-content>
             </md-tab>
             <md-tab label="Lodging">

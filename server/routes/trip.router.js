@@ -65,21 +65,61 @@ router.put('/:id', function(req, res){
     });
 });
 
-//put route to accept new transportation details
+// put route to accept new transportation details
 router.put('/transportation/:id', function(req, res){
     var id= req.params.id;
     var transportationOb = req.body;
-    Trip.findOne({_id : id}, function(err, trip){
-        trip.transportation.push(transportationOb);
-        trip.save(function(err){
-            if(err){
-                console.log(err);
-                res.sendStatus(500);
-            } else {
-                res.sendStatus(201);
+    console.log(transportationOb);
+    switch (transportationOb.action) {
+        case 'edit':
+            Trip.findOneAndUpdate({ "_id": id, "transportation._id": transportationOb.detailId },
+            {
+                "$set": {
+                    "transportation.$.type" : transportationOb.type.type,
+                    "transportation.$.icon" : transportationOb.type.icon,
+                    "transportation.$.from" : transportationOb.from,
+                    "transportation.$.to" : transportationOb.to,
+                    "transportation.$.date" : transportationOb.date,
+                    "transportation.$.leaveTime" : transportationOb.leaveTime,
+                    "transportation.$.arriveTime" : transportationOb.arriveTime,
+                    "transportation.$.price" : transportationOb.price,
+                    "transportation.$.details" : transportationOb.details,
+                }
+            }, function( err, trip){
+                if (err) {
+                    console.log(err);
+                    res.sendStatus(500);
+                    } else {
+                    res.sendStatus(201);
+                }
+            });
+            break;
+        case 'add':
+            Trip.findOne({ _id: id }, function (err, trip) {
+                trip.transportation.push(transportationOb);
+                trip.save(function (err) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                });
+            });
+            break;
+        case 'delete':
+        Trip.update({ "_id": id},
+            { "$pull": { transportation: { _id: transportationOb.detailId }}},
+            function (err, trip) {
+                if (err) {
+                    console.log(err);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(201);
+                }
             }
-        });
-    });
+        );
+    }
 });
 
 //put route for new lodging
