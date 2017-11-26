@@ -11,6 +11,7 @@ myApp.controller('UserController', function(UserService) {
   vm.selectTrip = function(id){
     UserService.selectTrip(id);
   }
+  
   vm.getTrips();
 
 });

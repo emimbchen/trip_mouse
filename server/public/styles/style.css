@@ -32,9 +32,10 @@ body, html {
 .container {
   width: 80%;
   margin: auto;
+  height: 100%;
 }
 
-#trips{
+#trips {
   background-color: white;
   padding-bottom: 15%;
   text-align: center;
@@ -100,6 +101,7 @@ li a:hover {
 #newTripForm {
   margin: 30px;
   width: 60%;
+  height: 100%;
 }
 
 h1 {
@@ -129,7 +131,37 @@ h3 {
   width: 40%;
 }
 
-/* .input {
-  width: 100%;
-} */
+md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+    color: lightseagreen;
+    background-color:lightseagreen;
+}
 
+.md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-fab, .md-button.md-default-theme.md-primary.md-raised, .md-button.md-primary.md-raised {
+  background-color: lightseagreen;
+  color: white;
+}
+
+.detailInfo {
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+form {
+  margin-left: 20px;
+}
+
+.main {
+  height: 100%;
+}
+
+.mainContainer {
+  height:100%;
+}
+
+.tabDiv{
+  height: 100%;
+}
+
+.tripCards {
+  width: 40%;
+}

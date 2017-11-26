@@ -19,7 +19,7 @@ router.post('/', function (req, res) {
     });
 });
 
-//route to get all trips
+//route to get all trips for the user page
 router.get('/', function (req, res) {
     Trip.find({userId: req.user._id}).sort({returnDate: 'desc'}).exec(function (err, foundObjects) {
         if (err) {
@@ -30,7 +30,6 @@ router.get('/', function (req, res) {
         }
     });
 })
-
 
 //route to get selected trip
 router.get('/:id', function (req, res) {
@@ -118,7 +117,7 @@ router.put('/activities/:id', function (req, res) {
 });
 
 
-//route to delete an entire tirp
+//route to delete an entire trip
 router.delete('/:id', function(req, res){
     var id = req.params.id;
     console.log(id);

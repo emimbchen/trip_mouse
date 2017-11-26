@@ -31,25 +31,81 @@
             <md-button ng-href="#/user" ng-click="ic.deleteTrip()">Delete Trip</md-button>
         </div>
     </div>
+<!-- example -->
+<!-- <md-card>
+    <md-card-header>
+        <md-card-avatar>
+            <md-icon class="material-icons">flight</md-icon>
+        </md-card-avatar>
+        <md-card-header-text>
+            <span class="md-title">{{HTML5}}</span>
+            <span class="md-subhead">Learn HTML5 @TutorialsPoint.com<md-icon class="material-icons">arrow_drop_down</md-icon></span>
+        </md-card-header-text>
+    </md-card-header>
 
-    <md-content>
-        <md-tabs>
+    <md-card-content>
+        <md-card-actions layout="row" layout-align="start center">
+            <md-button>Edit</md-button>
+            <md-button>Delete</md-button>
+            <md-button>Confirm</md-button>
+            <md-card-icon-actions>
+                <md-button class="md-icon-button" aria-label="icon">
+                    <md-icon class="material-icons">add</md-icon>
+                </md-button>
+            </md-card-icon-actions>
+        </md-card-actions>
+    </md-card-content>
+</md-card> -->
+<!-- example -->
+    <md-content class="tabDiv">
+        <md-tabs class="tabDiv">
             <md-tab label="Transportation">
-                <md-content>
+                <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced($event)">New Transportation</md-button>
-                    <p>Details</p>
+                    
+                    <!-- new -->
+                    <md-card ng-repeat="transportation in ic.userService.currentTrip.data.transportation">
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">flight</md-icon>
+                            </md-card-avatar>
+                            <md-card-header-text>
+                            <!-- dont forget hide function -->
+                                <span class="md-title">{{transportation.from}} <md-icon class="material-icons">arrow_forward</md-icon> {{transportation.to}}<md-icon ng-click="ic.explanded=!ic.expanded" class="material-icons">arrow_drop_down</md-icon></span>
+                                <span class="md-subhead">{{transportation.date | date}}</span>
+                            </md-card-header-text>
+                        </md-card-header>
+                    <!-- hide is not working currently -->
+                        <md-card-content ng-hide="ic.expanded">
+                            <p>{{transportation.leaveTime | date: 'shortTime'}}-{{transportation.arriveTime | date: 'shortTime'}}</p>
+                            <p>{{transportation.price | currency}} Per Person</p>
+                            <p>{{transportation.notes}}</p>
+                            <p></p>
+                            <md-card-actions layout="row" layout-align="start center">
+                                <md-button ng-click="ic.editDetail(transportation._id, 'transportation')">Edit</md-button>
+                                <md-button ng-click="ic.deleteDetail(transportation._id, 'transportation')">Delete</md-button>
+                                <md-button ng-click="ic.confirmDetail(transportation._id, 'transportation')">Confirm</md-button>
+                            </md-card-actions>
+                        </md-card-content>
+                    </md-card>
+                    <!-- new -->
+
                 </md-content>
             </md-tab>
             <md-tab label="Lodging">
-                <md-content>
+                <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced1($event)">New Lodging</md-button>
-                    <p>Details</p>
+                    <div class="detailInfo" ng-repeat="lodging in ic.userService.currentTrip.data.lodging">
+                        <span>{{lodging.name}}<i class="material-icons">keyboard_arrow_down</i></span>
+                    </div>
                 </md-content>
             </md-tab>
             <md-tab label="Activities">
-                <md-content>
+                <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced2($event)">New Activity</md-button>
-                    <p>Details</p>
+                    <div class="detailInfo" ng-repeat="activity in ic.userService.currentTrip.data.acivities">
+                        <span>{{activity.name}}<i class="material-icons">keyboard_arrow_down</i></span>
+                    </div>
                 </md-content>
             </md-tab>
         </md-tabs>
@@ -57,3 +113,6 @@
 
 </div>
 </div>
+
+
+

@@ -2,16 +2,44 @@
 <div class="container" id="trips">
 
     <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
-    <md-button class="md-raised" href="#/newtrip">Make A New Trip</md-button>
-    <h2>Future Trips</h2>
-    <div ng-repeat="trip in uc.tripObject.currentTrips">
+    <md-button class="md-raised md-primary" href="#/newtrip">Make A New Trip</md-button>
+
+    <h2>Current Trips</h2>
+    <md-card class="tripCards" ng-repeat="trip in uc.tripObject.currentTrips">
+        <md-card-header>
+            <md-card-avatar>
+            <md-button class="md-raised md-primary" ng-href="#/info/{{trip._id}}">Select
+            </md-button>
+            </md-card-avatar>
+            <md-card-header-text>
+                <span class="md-title">{{trip.tripDestination}}</span>
+                <span class="md-subhead"> {{trip.leaveDate | date}} - {{trip.returnDate | date}}
+                </span>
+            </md-card-header-text>
+        </md-card-header>
+    </md-card>
+
+    <!-- <div ng-repeat="trip in uc.tripObject.currentTrips">
         <a ng-href="#/info/{{trip._id}}" >{{trip.tripDestination}}</a><br/>
         {{trip.leaveDate | date}} - {{trip.returnDate | date}}
-    </div>
+    </div> -->
     <h2>Past Trips</h2>
-    <div ng-repeat="trip in uc.tripObject.pastTrips">
+<md-card class="tripCards" ng-repeat="trip in uc.tripObject.pastTrips">
+    <md-card-header>
+        <md-card-avatar>
+            <md-button class="md-raised md-primary" ng-href="#/info/{{trip._id}}">Select
+            </md-button>
+        </md-card-avatar>
+        <md-card-header-text>
+            <span class="md-title">{{trip.tripDestination}}</span>
+            <span class="md-subhead"> {{trip.leaveDate | date}} - {{trip.returnDate | date}}
+            </span>
+        </md-card-header-text>
+    </md-card-header>
+</md-card>
+    <!-- <div ng-repeat="trip in uc.tripObject.pastTrips">
         <a href="#/info/{{trip._id}}">{{trip.tripDestination}}</a><br/>
         {{trip.leaveDate | date}} - {{trip.returnDate | date}}
 
-    </div>
+    </div> -->
 </div>

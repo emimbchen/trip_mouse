@@ -4,6 +4,7 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   vm.userService = UserService;
   vm.thisTrip = UserService.currentTrip;
   vm.showEdit = false;
+  vm.transportOptions = ['Airplane', 'Train', 'Subway', 'Car', 'Taxi', 'Other'];
   
   var tripId = $routeParams.tripId;
   console.log(tripId);
@@ -14,6 +15,7 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
 
   vm.getThisTrip(tripId);
 
+  //function to show transportation partial
   vm.showAdvanced = function(ev){
     $mdDialog.show({
       templateUrl: '../views/partials/dialog1.html',
@@ -22,14 +24,8 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
       targetEvent: ev,
       clickOutsideToClose: true,
     })
-    // .then(function(answer){
-    //   vm.status = 'Answer: ', answer ;
-    //   console.log(answer);
-    //   }), function () {
-    //     vm.status = 'You cancelled the dialog.';
-    //   }
   }
-
+  //function to show lodging partial
   vm.showAdvanced1 = function (ev) {
     $mdDialog.show({
       templateUrl: '../views/partials/dialog2.html',
@@ -38,26 +34,11 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
       targetEvent: ev,
       clickOutsideToClose: true,
     })
-    // .then(function (answer) {
-    //   vm.status = 'Answer: ', answer;
-    // }), function () {
-    //   vm.status = 'You cancelled the dialog.';
-    // }
   }
-
+//function to show activity partial
   vm.showAdvanced2 = function (ev) {
     $mdDialog.show({
       templateUrl: '../views/partials/dialog3.html',
-      controller: 'InfoController as ic',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose: true,
-    })
-  }
-
-  vm.showAdvanced3 = function (ev) {
-    $mdDialog.show({
-      templateUrl: '../views/partials/dialog4.html',
       controller: 'InfoController as ic',
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -73,17 +54,18 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
     vm.showEdit = false;
   }
 
-  vm.editTrip = function(objectTosend){
-    
-    $http.put('/trip/' + tripId, objectTosend).then(function(response){
+  //edit trip object
+  vm.editTrip = function (objectTosend) {
+    $http.put('/trip/' + tripId, objectTosend).then(function (response) {
       console.log('update sent');
       vm.showEdit = false;
       vm.getThisTrip(tripId);
-    }).catch(function(error){
+    }).catch(function (error) {
       console.log('update not sent :(');
     })
   }
 
+  //route to delete this trip
   vm.deleteTrip = function(){
     $http.delete('/trip/' + tripId).then(function(response){
       console.log('delete sent');
@@ -93,6 +75,7 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
     })
   }
 
+  //route to add a new detail
   vm.newDetail = function(objectTosend, type) {
     console.log('Submit Clicked');
     console.log(objectTosend, type);
