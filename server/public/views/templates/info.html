@@ -33,37 +33,38 @@
     </div>
     <md-content class="tabDiv">
         <md-tabs class="tabDiv">
+            <!-- transportation section -->
             <md-tab label="Transportation">
                 <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced($event)">New Transportation</md-button>
-                    <md-card ng-repeat="transportation in ic.userService.currentTrip.data.transportation">
+                    <md-card ng-repeat="transportation in ic.userService.currentTrip.data.transportation track by $index">
                         <!-- div for nonedit mode -->
-                        <div>
+                        <div ng-hide = "ic.selectedDetail === $index" >
                         <md-card-header>
                             <md-card-avatar>
                                 <md-icon class="material-icons">{{transportation.type.icon}}</md-icon>
                             </md-card-avatar>
                             <md-card-header-text>
-                            <!-- dont forget hide function -->
-                                <span class="md-title">{{transportation.from}} <md-icon class="material-icons">arrow_forward</md-icon> {{transportation.to}}<md-icon ng-click="ic.explanded=!ic.expanded" class="material-icons">arrow_drop_down</md-icon></span>
+                                <span class="md-title">{{transportation.from}} <md-icon class="material-icons">arrow_forward</md-icon> {{transportation.to}}<md-icon ng-hide="$index === ic.selectedItem" ng-click="ic.setItem($index)" class="material-icons">arrow_drop_down</md-icon><md-icon ng-show="$index === ic.selectedItem" ng-click="ic.hideEdit()" class="material-icons">arrow_drop_up</md-icon></span>
                                 <span class="md-subhead">{{transportation.date | date}}</span>
                             </md-card-header-text>
                         </md-card-header>
-                    <!-- hide is not working currently -->
-                        <md-card-content ng-hide="ic.expanded">
+                        <!-- hidden details until expanded -->
+                        <md-card-content ng-show= '$index === ic.selectedItem'>
                             <p>{{transportation.leaveTime | date: 'shortTime'}}-{{transportation.arriveTime | date: 'shortTime'}}</p>
                             <p>{{transportation.price | currency}} Per Person</p>
                             <p>{{transportation.details}}</p>
                             <p></p>
                             <md-card-actions layout="row" layout-align="start center">
-                                <md-button ng-click="ic.editDetail()">Edit</md-button>
+                                <md-button ng-click="ic.editDetail($index)">Edit</md-button>
                                 <md-button ng-click="ic.newDetail(transportation, 'transportation', 'delete', transportation._id)">Delete</md-button>
                                 <md-button ng-click="ic.confirmDetail()">Confirm</md-button>
                             </md-card-actions>
+
                         </md-card-content>
                         </div>
                         <!-- div for transportation edit -->
-                        <div>
+                        <div ng-show= "ic.selectedDetail === $index">
                             <md-card-content>
                                     <md-input-container>
                                     <input type="text" ng-model="transportation.from">
@@ -98,10 +99,11 @@
                                 </md-input-container>
                                 <md-card-actions layout="row" layout-align="start center">
                                 <md-button ng-click="ic.newDetail(transportation, 'transportation', 'edit' , transportation._id)">Submit</md-button>
+                                <md-button ng-click="ic.hideEdit()">Cancel</md-button>
                                 </md-card-actions>
                             </md-card-content>
                         </div>
-
+                        <!-- end transportation edit -->
                     </md-card>
                 </md-content>
             </md-tab>

@@ -12,9 +12,21 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   //current trip Id from the Url
   var tripId = $routeParams.tripId;
   console.log(tripId);
+  //variable to trigger detail accordian
+  vm.selectedItem = null; 
+  //variable to trigger edit view
+  vm.selectedDetail = null;
   
   //functions
-  
+  vm.setItem = function(i){
+    vm.selectedItem = i;
+  }
+
+  vm.editDetail = function(detailIndex){
+    vm.selectedDetail = detailIndex;
+  }
+
+
   //function to get trips (Created and called)
   vm.getThisTrip = function(id){
     UserService.getThisTrip(id);
@@ -59,6 +71,8 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
 
   vm.hideEdit = function () {
     vm.showEdit = false;
+    vm.selectedItem = null;
+    vm.selectedDetail = null;
   }
 
   //edit general trip object
@@ -95,6 +109,7 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
       console.log('new', type, 'sent');
       $mdDialog.hide();
       vm.getThisTrip(tripId);
+      vm.hideEdit();
     }).catch(function (error) {
       console.log('update not sent :(');
     })
