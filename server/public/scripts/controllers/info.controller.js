@@ -1,18 +1,24 @@
 myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams, $http, $location) {
   console.log('InfoController created');
   var vm = this;
+  //variables
   vm.userService = UserService;
+  //get current trip data from user service
   vm.thisTrip = UserService.currentTrip;
+  //show Edit for general trip editing (not details)
   vm.showEdit = false;
-  vm.transportOptions = [ {type: 'Airplane', icon: 'flight' }, { type: 'Train', icon: 'train'}, {type: 'Subway', icon: 'subway'}, {type: 'Car', icon: 'directions_car'}, {type: 'Taxi', icon: "local_taxi"}, {type: 'Other', icon: "navigation"}];
-  
+  //transportation options for ng-repeat
+  vm.transportOptions = [{ type: 'Airplane', icon: 'flight' }, { type: 'Train', icon: 'train' }, { type: 'Bus', icon: 'directions_bus'}, {type: 'Subway', icon: 'subway'}, {type: 'Car', icon: 'directions_car'}, {type: 'Taxi', icon: "local_taxi"}, {type: 'Other', icon: "navigation"}];
+  //current trip Id from the Url
   var tripId = $routeParams.tripId;
   console.log(tripId);
-
+  
+  //functions
+  
+  //function to get trips (Created and called)
   vm.getThisTrip = function(id){
     UserService.getThisTrip(id);
   }
-
   vm.getThisTrip(tripId);
 
   //function to show transportation partial
@@ -46,15 +52,16 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
     })
   }
 
-  vm.editInputs = function(){
+  //edit trip show and hide
+  vm.editInputs = function () {
     vm.showEdit = true;
   }
 
-  vm.hideEdit = function() {
+  vm.hideEdit = function () {
     vm.showEdit = false;
   }
 
-  //edit trip object
+  //edit general trip object
   vm.editTrip = function (objectTosend) {
     $http.put('/trip/' + tripId, objectTosend).then(function (response) {
       console.log('update sent');
@@ -65,7 +72,8 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
     })
   }
 
-  //route to delete this trip
+  //route to delete this trip deletes entire trip
+  //will move this to user page
   vm.deleteTrip = function(){
     $http.delete('/trip/' + tripId).then(function(response){
       console.log('delete sent');
@@ -75,7 +83,10 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
     })
   }
 
-  //route to add a new detail
+  //ROUTE FOR ALL TRIP DETAIL EDITS EDITS
+  // which route is determined by type: transportation, lodging, activities
+  //which action in switch: edit, delete, add
+  //detail id: id of the specific detail (necessary for edit and delete)
   vm.newDetail = function(objectTosend, type, action, detailId) {
     console.log(objectTosend, type, action, detailId);
     objectTosend.action = action; 

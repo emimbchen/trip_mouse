@@ -75,8 +75,7 @@ router.put('/transportation/:id', function(req, res){
             Trip.findOneAndUpdate({ "_id": id, "transportation._id": transportationOb.detailId },
             {
                 "$set": {
-                    "transportation.$.type" : transportationOb.type.type,
-                    "transportation.$.icon" : transportationOb.type.icon,
+                    "transportation.$.type" : {type: transportationOb.type.type, icon: transportationOb.type.icon},
                     "transportation.$.from" : transportationOb.from,
                     "transportation.$.to" : transportationOb.to,
                     "transportation.$.date" : transportationOb.date,
