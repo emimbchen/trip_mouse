@@ -13,15 +13,12 @@
                 <span class="md-subhead"> {{trip.leaveDate | date}} - {{trip.returnDate | date}}
                 </span>
             </md-card-header-text>
+            <md-button class="md-raised md-warn" ng-click="uc.deleteTrip(trip._id)">Delete</md-button>
             <md-button class="md-raised md-primary" ng-href="#/info/{{trip._id}}">Select
             </md-button>
         </md-card-header>
     </md-card>
     </div>
-    <!-- <div ng-repeat="trip in uc.tripObject.currentTrips">
-        <a ng-href="#/info/{{trip._id}}" >{{trip.tripDestination}}</a><br/>
-        {{trip.leaveDate | date}} - {{trip.returnDate | date}}
-    </div> -->
     <h2>Past Trips</h2>
     <div layout="row" layout-align="center center">
 <md-card  flex="40" class="tripCards" ng-repeat="trip in uc.tripObject.pastTrips">
@@ -31,8 +28,8 @@
             <span class="md-subhead"> {{trip.leaveDate | date}} - {{trip.returnDate | date}}
             </span>
         </md-card-header-text>
-        <md-button class="md-raised md-primary" ng-href="#/info/{{trip._id}}">Select
-        </md-button>
+        <md-button class="md-raised md-warn" ng-click= "uc.deleteTrip(trip._id)">Delete</md-button>
+        <md-button class="md-raised md-primary" ng-href="#/info/{{trip._id}}">Select</md-button>
     </md-card-header>
 </md-card>
 </div>

@@ -17,15 +17,24 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   //variable to trigger edit view
   vm.selectedDetail = null;
   
-  //functions
+  //functions for hiding details for the drop down
   vm.setItem = function(i){
     vm.selectedItem = i;
   }
-
   vm.editDetail = function(detailIndex){
     vm.selectedDetail = detailIndex;
   }
 
+  //edit trip show and hide
+  vm.editInputs = function () {
+    vm.showEdit = true;
+  }
+  //hides all expanded things
+  vm.hideEdit = function () {
+    vm.showEdit = false;
+    vm.selectedItem = null;
+    vm.selectedDetail = null;
+  }
 
   //function to get trips (Created and called)
   vm.getThisTrip = function(id){
@@ -65,24 +74,21 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   }
 
   //function to show confirmation for detail delete
-  $mdDialog.show(confirm).then(function () {
-    $scope.status = 'You decided to get rid of your debt.';
-  }, function () {
-    $scope.status = 'You decided to keep your debt.';
+  vm.showConfirm = function (ev, objectTosend, type, action, detailId){
+    console.log(objectTosend, type, action, detailId);
+    var confirm = $mdDialog.confirm()
+    .title('Would you like to delete this detail perminantly?')
+    .ariaLabel('confirm')
+    .targetEvent(ev)
+    .ok('Yes, Delete This Detail')
+    .cancel('Cancel')
+    $mdDialog.show(confirm).then(function (){
+    //delete function
+      vm.newDetail(objectTosend, type, action, detailId);
+  }, function(){
+
   });
-};
-
-
-  //edit trip show and hide
-  vm.editInputs = function () {
-    vm.showEdit = true;
-  }
-
-  vm.hideEdit = function () {
-    vm.showEdit = false;
-    vm.selectedItem = null;
-    vm.selectedDetail = null;
-  }
+  };
 
   //edit general trip object
   vm.editTrip = function (objectTosend) {
@@ -95,16 +101,16 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
     })
   }
 
-  //route to delete this trip deletes entire trip
-  //will move this to user page
-  vm.deleteTrip = function(){
-    $http.delete('/trip/' + tripId).then(function(response){
-      console.log('delete sent');
-      $location.path('/user');
-    }).catch(function(error){
-      console.log('delete not sent');
-    })
-  }
+  // //route to delete this trip deletes entire trip
+  // //will move this to user page
+  // vm.deleteTrip = function(){
+  //   $http.delete('/trip/' + tripId).then(function(response){
+  //     console.log('delete sent');
+  //     $location.path('/user');
+  //   }).catch(function(error){
+  //     console.log('delete not sent');
+  //   })
+  // }
 
   //ROUTE FOR ALL TRIP DETAIL EDITS EDITS
   // which route is determined by type: transportation, lodging, activities

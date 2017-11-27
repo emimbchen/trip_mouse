@@ -16,6 +16,7 @@ myApp.service('UserService', function($http, $location){
     self.getThisTrip(id);
     console.log('Current Trip Id', id);
   }
+  
   //sorting function
   self.sortTrips = function (tripArray) {
     self.tripObject.currentTrips = [];

@@ -26,9 +26,9 @@
             <input type="text" ng-model="ic.userService.currentTrip.data.travellers">
             <md-datepicker ng-model="ic.userService.currentTrip.data.leaveDate"></md-datepicker>
             <md-datepicker ng-model="ic.userService.currentTrip.data.returnDate"></md-datepicker><br/>
-            <md-button ng-click="ic.editTrip(ic.userService.currentTrip.data)">Save</md-button>
-            <md-button ng-click="ic.hideEdit()">Cancel</md-button>
-            <md-button ng-href="#/user" ng-click="ic.deleteTrip()">Delete Trip</md-button>
+            <md-button class="md-primary md-raised" ng-click="ic.editTrip(ic.userService.currentTrip.data)">Save</md-button>
+            <md-button class="md-raised" ng-click="ic.hideEdit()">Cancel</md-button>
+            <!-- <md-button ng-href="#/user" ng-click="ic.deleteTrip()">Delete Trip</md-button> -->
         </div>
     </div>
     <md-content class="tabDiv">
@@ -56,9 +56,9 @@
                             <p>Notes: {{transportation.details}}</p>
                             <p></p>
                             <md-card-actions layout="row" layout-align="start center">
-                                <md-button ng-click="ic.editDetail($index)">Edit</md-button>
-                                <md-button ng-click="ic.newDetail(transportation, 'transportation', 'delete', transportation._id)">Delete</md-button>
-                                <md-button ng-click="ic.confirmDetail()">Confirm</md-button>
+                                <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
+                                <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, transportation, 'transportation', 'delete', transportation._id)">Delete</md-button>
+                                <md-button class="md-primary md-raised" ng-click="ic.confirmDetail()">Add To My Itinerary</md-button>
                             </md-card-actions>
 
                         </md-card-content>
@@ -98,8 +98,8 @@
                                 <input type="text" ng-model="transportation.details">
                                 </md-input-container>
                                 <md-card-actions layout="row" layout-align="start center">
-                                <md-button ng-click="ic.newDetail(transportation, 'transportation', 'edit' , transportation._id)">Submit</md-button>
-                                <md-button ng-click="ic.hideEdit()">Cancel</md-button>
+                                <md-button class="md-primary md-raised" ng-click="ic.newDetail(transportation, 'transportation', 'edit' , transportation._id)">Submit</md-button>
+                                <md-button class="md-raised" ng-click="ic.hideEdit()">Cancel</md-button>
                                 </md-card-actions>
                             </md-card-content>
                         </md-card>
@@ -134,9 +134,9 @@
                                 <p>Cost per Night: {{lodging.price}}</p>
                                 <p>Notes: {{lodging.details}}</p>
                                 <md-card-actions layout="row" layout-align="start center">
-                                    <md-button ng-click="ic.editDetail($index)">Edit</md-button>
-                                    <md-button ng-click="ic.newDetail(lodging, 'lodging', 'delete', lodging._id)">Delete</md-button>
-                                    <md-button ng-click="ic.confirmDetail()">Confirm</md-button>
+                                    <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
+                                    <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, lodging, 'lodging', 'delete', lodging._id)">Delete</md-button>
+                                    <md-button class="md-primary md-raised" ng-click="ic.confirmDetail()">Add To My Itinerary</md-button>
                                 </md-card-actions>
                             </md-card-content>
                             </div>
@@ -164,8 +164,8 @@
                                         <input type="text" ng-model="lodging.details">
                                     </md-input-container>
                                     <md-card-actions layout="row" layout-align="start center">
-                                        <md-button ng-click="ic.newDetail(lodging, 'lodging', 'edit' , lodging._id)">Submit</md-button>
-                                        <md-button ng-click="ic.hideEdit()">Cancel</md-button>
+                                        <md-button class="md-primary md-raised" ng-click="ic.newDetail(lodging, 'lodging', 'edit' , lodging._id)">Submit</md-button>
+                                        <md-button class="md-raised" ng-click="ic.hideEdit()">Cancel</md-button>
                                     </md-card-actions>
                                 </md-card-content>
                             </div>
@@ -176,7 +176,7 @@
 <!-- new -->
 <md-tab label="Activities">
     <md-content class="tabDiv">
-        <md-button class="md-primary md-raised" ng-click="ic.showAdvanced2($event)">New Lodging</md-button>
+        <md-button class="md-primary md-raised" ng-click="ic.showAdvanced2($event)">New Activity</md-button>
         <md-card ng-repeat="activity in ic.userService.currentTrip.data.activities track by $index">
             <!-- div for nonedit mode -->
             <div ng-hide="ic.selectedDetail === $index">
@@ -198,9 +198,9 @@
                     <p> Cost per Person: {{activity.price}}</p>
                     <p>Notes: {{activity.details}}</p>
                     <md-card-actions layout="row" layout-align="start center">
-                        <md-button ng-click="ic.editDetail($index)">Edit</md-button>
-                        <md-button ng-click="ic.newDetail(activity, 'activities', 'delete', activity._id)">Delete</md-button>
-                        <md-button ng-click="ic.confirmDetail()">Confirm</md-button>
+                        <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
+                        <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, activity, 'activities', 'delete', activity._id)">Delete</md-button>
+                        <md-button class="md-primary md-raised" ng-click="ic.confirmDetail()">Add To My Itinerary</md-button>
                     </md-card-actions>
                 </md-card-content>
             </div>
@@ -224,8 +224,8 @@
                         <input type="text" ng-model="activity.details">
                     </md-input-container>
                     <md-card-actions layout="row" layout-align="start center">
-                        <md-button ng-click="ic.newDetail(activity, 'activities', 'edit' , activity._id)">Submit</md-button>
-                        <md-button ng-click="ic.hideEdit()">Cancel</md-button>
+                        <md-button class="md-primary md-raised" ng-click="ic.newDetail(activity, 'activities', 'edit' , activity._id)">Submit</md-button>
+                        <md-button class="md-raised" ng-click="ic.hideEdit()">Cancel</md-button>
                     </md-card-actions>
                 </md-card-content>
             </div>
