@@ -41,7 +41,7 @@ body, html {
   text-align: center;
 }
 
-#infoDiv {
+.infoDiv {
   background-color: white;
   text-align: center;
 }

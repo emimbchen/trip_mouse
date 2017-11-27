@@ -2,7 +2,7 @@
 <div class="container">
 
 
-    <div id="infoDiv">
+    <div class="infoDiv">
         <div  ng-hide="ic.showEdit">
             <h1>{{ic.userService.currentTrip.data.tripDestination}}
                 <i ng-click="ic.editInputs()" class="material-icons">edit</i>
@@ -37,7 +37,7 @@
             <md-tab label="Transportations">
                 <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced($event)">New Transportation</md-button>
-                    <md-card ng-repeat="transportation in ic.userService.currentTrip.data.transportation track by $index">
+                    <md-card flex="40" ng-repeat="transportation in ic.userService.currentTrip.data.transportation track by $index">
                         <!-- div for nonedit mode -->
                         <div ng-hide = "ic.selectedDetail === $index" >
                         <md-card-header>
@@ -111,7 +111,7 @@
            <md-tab label="Lodgings">
                <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced1($event)">New Lodging</md-button>
-                    <md-card ng-repeat="lodging in ic.userService.currentTrip.data.lodging track by $index">
+                    <md-card flex="40" ng-repeat="lodging in ic.userService.currentTrip.data.lodging track by $index">
                     <!-- div for nonedit mode -->
                     <div ng-hide="ic.selectedDetail === $index">
                         <md-card-header>
@@ -177,7 +177,7 @@
 <md-tab label="Activities">
     <md-content class="tabDiv">
         <md-button class="md-primary md-raised" ng-click="ic.showAdvanced2($event)">New Activity</md-button>
-        <md-card ng-repeat="activity in ic.userService.currentTrip.data.activities track by $index">
+        <md-card flex="40" ng-repeat="activity in ic.userService.currentTrip.data.activities track by $index">
             <!-- div for nonedit mode -->
             <div ng-hide="ic.selectedDetail === $index">
                 <md-card-header>

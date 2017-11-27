@@ -5,6 +5,7 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   vm.userService = UserService;
   //get current trip data from user service
   vm.thisTrip = UserService.currentTrip;
+  
   //show Edit for general trip editing (not details)
   vm.showEdit = false;
   //transportation options for ng-repeat

@@ -51,8 +51,35 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/tripnav', {
       templateUrl: 'views/partials/tripnav.html',
-      controller: 'PartialController as pc',
+      controller: 'InfoController as ic',
       resolve: {
+        getuser: function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/itinerarynav', {
+      templateUrl: 'views/partials/itinerary.html',
+      controller: 'itineraryGlanceController as ig',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/itineraryGlance/:tripId', {
+      templateUrl: 'views/templates/itineraryGlance.html',
+      controller: 'itineraryGlanceController as ig',
+      resolve: {
+        getuser: function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/itineraryDaily/:tripId', {
+      templateUrl: 'views/templates/itineraryGlance.html',
+      controller: 'itineraryDailyController as id',
+      ressolve: {
         getuser: function(UserService){
           return UserService.getuser();
         }
