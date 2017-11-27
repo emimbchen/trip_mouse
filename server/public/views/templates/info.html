@@ -2,7 +2,7 @@
 <div class="container">
 
 
-    <div id="infoDiv">
+    <div class="infoDiv">
         <div  ng-hide="ic.showEdit">
             <h1>{{ic.userService.currentTrip.data.tripDestination}}
                 <i ng-click="ic.editInputs()" class="material-icons">edit</i>
@@ -12,47 +12,229 @@
             
             <div layout="row">
                 <h3>Travellers: {{ic.userService.currentTrip.data.travellers}}</h3>
-                <h3>Cost Per Person: </h3>
-                <h3>Total Cost:</h3>
+                <!-- <h3>Cost Per Person: </h3>
+                <h3>Total Cost:</h3> -->
             </div>
         </div>
 
         <!-- edit div shows up when edit button is pressed-->
         <div ng-show="ic.showEdit">
             <h1>
-            <input type="text" ng-model="ic.tripObject.tripDestination" placeholder={{ic.userService.currentTrip.data.tripDestination}}>
+            <input type="text" ng-model="ic.userService.currentTrip.data.tripDestination">
             </h1>
             <label>Number of Travellers: </label>
-            <input type="text" ng-model="ic.tripObject.travellers"placeholder={{ic.userService.currentTrip.data.travellers}}>
-            <md-datepicker ng-model="ic.tripObject.leaveDate" md-placeholder= {{ic.userService.currentTrip.data.leaveDate}} ></md-datepicker>
-            <md-datepicker ng-model="ic.tripObject.returnDate" md-placeholder={{ic.userService.currentTrip.data.returnDate}}></md-datepicker><br/>
-            <md-button ng-click="ic.editTrip(ic.tripObject)">Save</md-button>
-            <md-button ng-click="ic.hideEdit()">Cancel</md-button>
+            <input type="text" ng-model="ic.userService.currentTrip.data.travellers">
+            <md-datepicker ng-model="ic.userService.currentTrip.data.leaveDate"></md-datepicker>
+            <md-datepicker ng-model="ic.userService.currentTrip.data.returnDate"></md-datepicker><br/>
+            <md-button class="md-primary md-raised" ng-click="ic.editTrip(ic.userService.currentTrip.data)">Save</md-button>
+            <md-button class="md-raised" ng-click="ic.hideEdit()">Cancel</md-button>
+            <!-- <md-button ng-href="#/user" ng-click="ic.deleteTrip()">Delete Trip</md-button> -->
         </div>
     </div>
-
-    <md-content>
-        <md-tabs>
-            <md-tab label="Transportation">
-                <md-content>
+    <md-content class="tabDiv">
+        <md-tabs class="tabDiv">
+            <!-- transportation section -->
+            <md-tab label="Transportations">
+                <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced($event)">New Transportation</md-button>
-                    <p>Details</p>
-                </md-content>
-            </md-tab>
-            <md-tab label="Lodging">
-                <md-content>
-                    <md-button class="md-primary md-raised" ng-click="ic.showAdvanced1($event)">New Lodging</md-button>
-                    <p>Details</p>
-                </md-content>
-            </md-tab>
-            <md-tab label="Activities">
-                <md-content>
-                    <md-button class="md-primary md-raised" ng-click="ic.showAdvanced2($event)">New Activity</md-button>
-                    <p>Details</p>
-                </md-content>
-            </md-tab>
-        </md-tabs>
-    </md-content>
+                    <md-card flex="40" ng-repeat="transportation in ic.userService.currentTrip.data.transportation track by $index">
+                        <!-- div for nonedit mode -->
+                        <div ng-hide = "ic.selectedDetail === $index" >
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">{{transportation.type.icon}}</md-icon>
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title">{{transportation.from}} <md-icon class="material-icons">arrow_forward</md-icon> {{transportation.to}}<md-icon ng-hide="$index === ic.selectedItem" ng-click="ic.setItem($index)" class="material-icons">arrow_drop_down</md-icon><md-icon ng-show="$index === ic.selectedItem" ng-click="ic.hideEdit()" class="material-icons">arrow_drop_up</md-icon></span>
+                                <span class="md-subhead">{{transportation.date | date}}</span>
+                            </md-card-header-text>
+                        </md-card-header>
+                        <!-- hidden details until expanded -->
+                        <md-card-content ng-show= '$index === ic.selectedItem'>
+                            <p>{{transportation.leaveTime | date: 'shortTime'}}-{{transportation.arriveTime | date: 'shortTime'}}</p>
+                            <p>Cost Per Person: {{transportation.price | currency}}</p>
+                            <p>Notes: {{transportation.details}}</p>
+                            <p></p>
+                            <md-card-actions layout="row" layout-align="start center">
+                                <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
+                                <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, transportation, 'transportation', 'delete', transportation._id)">Delete</md-button>
+                                <md-button class="md-primary md-raised" ng-click="ic.confirmDetail()">Add To My Itinerary</md-button>
+                            </md-card-actions>
 
+                        </md-card-content>
+                        </div>
+                        <!-- div for transportation edit -->
+                        <md-card ng-show= "ic.selectedDetail === $index">
+                            <md-card-content>
+                                    <md-input-container>
+                                    <input type="text" ng-model="transportation.from">
+                                    </md-input-container>
+                                    <md-input-container>
+                                    <input type="text" ng-model="transportation.to">
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <label>
+                                            Form of Transportation
+                                        </label>
+                                        <md-select ng-model="transportation.type" >
+                                            <md-option ng-value= "type" ng-repeat="type in ic.transportOptions">
+                                                {{type.type}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                <md-datepicker ng-model="transportation.date"></md-datepicker>
+
+                                <md-input-container>
+                                <input type="datetime" ng-model="transportation.leaveTime">
+                                </md-input-container>
+                                <md-input-container>
+                                <input type="datetime" ng-model="transportation.arriveTime">
+                                </md-input-container>
+                                
+                                <md-input-container>
+                                <input type="text" ng-model="transportation.price">
+                                </md-input-container>
+                                <md-input-container></md-input-container>
+                                <input type="text" ng-model="transportation.details">
+                                </md-input-container>
+                                <md-card-actions layout="row" layout-align="start center">
+                                <md-button class="md-primary md-raised" ng-click="ic.newDetail(transportation, 'transportation', 'edit' , transportation._id)">Submit</md-button>
+                                <md-button class="md-raised" ng-click="ic.hideEdit()">Cancel</md-button>
+                                </md-card-actions>
+                            </md-card-content>
+                        </md-card>
+                        <!-- end transportation edit -->
+                    </md-card>
+                </md-content>
+            </md-tab>
+            <!-- new -->
+           <md-tab label="Lodgings">
+               <md-content class="tabDiv">
+                    <md-button class="md-primary md-raised" ng-click="ic.showAdvanced1($event)">New Lodging</md-button>
+                    <md-card flex="40" ng-repeat="lodging in ic.userService.currentTrip.data.lodging track by $index">
+                    <!-- div for nonedit mode -->
+                    <div ng-hide="ic.selectedDetail === $index">
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">hotel</md-icon>
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title">{{lodging.name}}
+                                    <md-icon ng-hide="$index === ic.selectedItem" ng-click="ic.setItem($index)" class="material-icons">arrow_drop_down</md-icon>
+                                    <md-icon ng-show="$index === ic.selectedItem" ng-click="ic.hideEdit()" class="material-icons">arrow_drop_up</md-icon>
+                                </span>
+                                <span class="md-subhead">{{lodging.checkIn | date}}- {{lodging.checkOut | date}}</span>
+                            </md-card-header-text>
+                            </md-card-header>
+                            <!-- hidden details until expanded -->
+                            <md-card-content ng-show='$index === ic.selectedItem'>
+                                <p>Address: {{lodging.address}}</p>
+                                <p>Phone Number: {{lodging.phoneNumber}}</p>
+                                <p>Website: {{lodging.website}}</p>
+                                <p>Cost per Night: {{lodging.price}}</p>
+                                <p>Notes: {{lodging.details}}</p>
+                                <md-card-actions layout="row" layout-align="start center">
+                                    <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
+                                    <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, lodging, 'lodging', 'delete', lodging._id)">Delete</md-button>
+                                    <md-button class="md-primary md-raised" ng-click="ic.confirmDetail()">Add To My Itinerary</md-button>
+                                </md-card-actions>
+                            </md-card-content>
+                            </div>
+                            <!-- div for lodging edit -->
+                            <div ng-show="ic.selectedDetail === $index">
+                                <md-card-content>
+                                <md-input-container>
+                                    <input type="text" ng-model="lodging.name">
+                                </md-input-container>
+                                <md-datepicker ng-model="lodging.checkIn"></md-datepicker>
+                                    <md-datepicker ng-model="lodging.checkOut"></md-datepicker>
+                                    <md-input-container>
+                                        <input type="text" ng-model="lodging.address">
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <input type="tel" ng-model="lodging.phoneNumber">
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <input type="text" ng-model="lodging.website">
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <input type="text" ng-model="lodging.price">
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <input type="text" ng-model="lodging.details">
+                                    </md-input-container>
+                                    <md-card-actions layout="row" layout-align="start center">
+                                        <md-button class="md-primary md-raised" ng-click="ic.newDetail(lodging, 'lodging', 'edit' , lodging._id)">Submit</md-button>
+                                        <md-button class="md-raised" ng-click="ic.hideEdit()">Cancel</md-button>
+                                    </md-card-actions>
+                                </md-card-content>
+                            </div>
+                            <!-- end of lodging edit -->
+                    </md-card>
+                </md-content>
+            </md-tab>
+<!-- new -->
+<md-tab label="Activities">
+    <md-content class="tabDiv">
+        <md-button class="md-primary md-raised" ng-click="ic.showAdvanced2($event)">New Activity</md-button>
+        <md-card flex="40" ng-repeat="activity in ic.userService.currentTrip.data.activities track by $index">
+            <!-- div for nonedit mode -->
+            <div ng-hide="ic.selectedDetail === $index">
+                <md-card-header>
+                    <md-card-avatar>
+                        <md-icon class="material-icons">local_activity</md-icon>
+                    </md-card-avatar>
+                    <md-card-header-text>
+                        <span class="md-title">{{activity.activity}} in {{activity.where}}
+                            <md-icon ng-hide="$index === ic.selectedItem" ng-click="ic.setItem($index)" class="material-icons">arrow_drop_down</md-icon>
+                            <md-icon ng-show="$index === ic.selectedItem" ng-click="ic.hideEdit()" class="material-icons">arrow_drop_up</md-icon>
+                        </span>
+                        <span class="md-subhead"> {{activity.when | date}}</span>
+                    </md-card-header-text>
+                </md-card-header>
+                <!-- hidden details until expanded -->
+                <md-card-content ng-show='$index === ic.selectedItem'>
+                    <p>Website: {{activity.website}}</p>
+                    <p> Cost per Person: {{activity.price}}</p>
+                    <p>Notes: {{activity.details}}</p>
+                    <md-card-actions layout="row" layout-align="start center">
+                        <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
+                        <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, activity, 'activities', 'delete', activity._id)">Delete</md-button>
+                        <md-button class="md-primary md-raised" ng-click="ic.confirmDetail()">Add To My Itinerary</md-button>
+                    </md-card-actions>
+                </md-card-content>
+            </div>
+            <!-- div for lodging edit -->
+            <div ng-show="ic.selectedDetail === $index">
+                <md-card-content>
+                    <md-input-container>
+                        <input type="text" ng-model="activity.activity">
+                    </md-input-container>
+                    <md-input-container>
+                        <input type="text" ng-model="activity.where">
+                    </md-input-container>
+                    <md-datepicker ng-model="activity.when"></md-datepicker>
+                    <md-input-container>
+                        <input type="text" ng-model="activity.website">
+                    </md-input-container>
+                    <md-input-container>
+                        <input type="text" ng-model="activity.price">
+                    </md-input-container>
+                    <md-input-container>
+                        <input type="text" ng-model="activity.details">
+                    </md-input-container>
+                    <md-card-actions layout="row" layout-align="start center">
+                        <md-button class="md-primary md-raised" ng-click="ic.newDetail(activity, 'activities', 'edit' , activity._id)">Submit</md-button>
+                        <md-button class="md-raised" ng-click="ic.hideEdit()">Cancel</md-button>
+                    </md-card-actions>
+                </md-card-content>
+            </div>
+            <!-- end of lodging edit -->
+        </md-card>
+    </md-content>
+</md-tab>
 </div>
 </div>
+
+
+

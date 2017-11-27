@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 //nested transportation schema
 var TransportationSchema = new Schema({
-    type: String,
+    type: Object,
     from: String,
     to: String,
     date: Date,
@@ -31,6 +31,7 @@ var ActivitiesSchema = new Schema({
     activity: String,
     where: String,
     when: Date,
+    website: String,
     price: Number,
     details: String
 });

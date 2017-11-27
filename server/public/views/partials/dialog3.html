@@ -4,28 +4,28 @@
         <div class="input">
             <md-input-container>
                 <label>Activity:</label>
-                <input type="text" ng-model="activity.name">
+                <input type="text" ng-model="ic.activity.activity">
             </md-input-container>
             <md-input-container>
                 <label>Location:</label>
-                <input type="text" ng-model="activity.location">
+                <input type="text" ng-model="ic.activity.where">
             </md-input-container>
             <md-input-container>
-                <md-datepicker ng-model="activity.date" required md-placeholder="Activity Date"></md-datepicker>
+                <md-datepicker ng-model="ic.activity.when" required md-placeholder="Activity Date"></md-datepicker>
             </md-input-container>
             <md-input-container>
                 <label>Website:</label>
-                <input type="url" ng-model="activity.website">
+                <input type="text" ng-model="ic.activity.website">
             </md-input-container>
             <md-input-container>
                 <label>Price:</label>
-                <input type="text" ng-model="activity.price">
+                <input type="text" ng-model="ic.activity.price">
             </md-input-container>
             <md-input-container>
                 <label>Notes:</label>
-                <input type="text" ng-model="activity.notes">
+                <input type="text" ng-model="ic.activity.details">
             </md-input-container>
-            <md-button type="submit" class="md-raised">Submit</md-button>
+            <md-button class="md-primary md-raised" ng-click="ic.newDetail(ic.activity, 'activities', 'add')" type="submit" class="md-raised">Submit</md-button>
         </div>
     </form>
 </md-dialog>
