@@ -64,6 +64,15 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
     })
   }
 
+  //function to show confirmation for detail delete
+  $mdDialog.show(confirm).then(function () {
+    $scope.status = 'You decided to get rid of your debt.';
+  }, function () {
+    $scope.status = 'You decided to keep your debt.';
+  });
+};
+
+
   //edit trip show and hide
   vm.editInputs = function () {
     vm.showEdit = true;

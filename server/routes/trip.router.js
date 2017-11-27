@@ -181,18 +181,18 @@ router.put('/lodging/:id', function (req, res) {
 router.put('/activities/:id', function (req, res) {
     var id = req.params.id;
     var activityOb = req.body;
-    console.log(transportationOb);
+    console.log(activityOb);
     switch (activityOb.action) {
         case 'edit':
             Trip.findOneAndUpdate({ "_id": id, "activities._id": activityOb.detailId },
                 {
                     "$set": {
                         "activities.$.activity": activityOb.activity ,
-                        "activities.$.where": transportationOb.where,
-                        "activities.$.when": transportationOb.when,
-                        "activities.$.website": transportationOb.website,
-                        "activities.$.price": transportationOb.price,
-                        "activities.$.details": transportationOb.details,
+                        "activities.$.where": activityOb.where,
+                        "activities.$.when": activityOb.when,
+                        "activities.$.website": activityOb.website,
+                        "activities.$.price": activityOb.price,
+                        "activities.$.details": activityOb.details,
                     }
                 }, function (err, trip) {
                     if (err) {
