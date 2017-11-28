@@ -10,7 +10,8 @@ var TransportationSchema = new Schema({
     leaveTime: Date,
     arriveTime: Date,
     price: Number,
-    details: String
+    details: String,
+    confirmed: { type: Boolean, default: false }
 
 });
 
@@ -23,7 +24,8 @@ var LodgingSchema = new Schema({
     phoneNumber: Number,
     website: String,
     price: Number,
-    details: String
+    details: String,
+    confirmed: { type: Boolean, default: false }
 });
 
 //nested activities schema
@@ -33,7 +35,8 @@ var ActivitiesSchema = new Schema({
     when: Date,
     website: String,
     price: Number,
-    details: String
+    details: String,
+    confirmed: {type: Boolean, default: false}
 });
 
 //trip collection schema

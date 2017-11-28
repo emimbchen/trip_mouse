@@ -42,15 +42,36 @@ myApp.service('UserService', function($http, $location){
     });
   }
 
-  //gets selected trip and details
+  //sorts the categories
+  self.sortDetails = function (arrayOfDetails) {
+    self.currentTrip.transportation = [];
+    self.currentTrip.lodging = [];
+    self.currentTrip.activity= [];
+    for (var i = 0; i < arrayOfDetails.length; i++) {
+      if (arrayOfDetails[i].kind === 'transportation') {
+        self.currentTrip.transportation.push(arrayOfDetails[i]);
+      }
+      if (arrayOfDetails[i].kind === 'lodging') {
+        self.currentTrip.lodging.push(arrayOfDetails[i]);
+      }
+      if (arrayOfDetails[i].kind === 'activity') {
+        self.currentTrip.activity.push(arrayOfDetails[i]);
+      }
+    }
+  }
+
+  //gets selected trip and details and sorts itinerary
   self.getThisTrip = function (id) {
     $http.get('/trip/' + id).then(function (response) {
       self.currentTrip.data = response.data;
       console.log('current trip details', self.currentTrip);
+      self.sortDetails(self.currentTrip.data.itinerary);
     }).catch(function (error) {
       console.log('failure on Get specific trip route');
     })
   }
+
+
 
   //get user function
   self.getuser = function(){

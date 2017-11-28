@@ -42,7 +42,7 @@
                         <div ng-hide = "ic.selectedDetail === $index" >
                         <md-card-header>
                             <md-card-avatar>
-                                <md-icon class="material-icons">{{transportation.type.icon}}</md-icon>
+                                <md-icon ng-class="{'blue' : transportation.confirmed}" class="material-icons">{{transportation.type.icon}}</md-icon>
                             </md-card-avatar>
                             <md-card-header-text>
                                 <span class="md-title">{{transportation.from}} <md-icon class="material-icons">arrow_forward</md-icon> {{transportation.to}}<md-icon ng-hide="$index === ic.selectedItem" ng-click="ic.setItem($index)" class="material-icons">arrow_drop_down</md-icon><md-icon ng-show="$index === ic.selectedItem" ng-click="ic.hideEdit()" class="material-icons">arrow_drop_up</md-icon></span>
@@ -58,7 +58,8 @@
                             <md-card-actions layout="row" layout-align="start center">
                                 <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
                                 <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, transportation, 'transportation', 'delete', transportation._id)">Delete</md-button>
-                                <md-button class="md-primary md-raised" ng-click="ic.confirmDetail()">Add To My Itinerary</md-button>
+                                <md-button ng-hide="transportation.confirmed" class="md-primary md-raised" ng-click="ic.newDetail(transportation, 'transportation', 'confirm', transportation._id)">Add To Itinerary</md-button>
+                                <md-button ng-show="transportation.confirmed" class="md-primary md-raised" ng-click="ic.newDetail(transportation, 'transportation', 'unconfirm', transportation._id)">Remove From Itinerary</md-button>
                             </md-card-actions>
 
                         </md-card-content>
@@ -116,7 +117,7 @@
                     <div ng-hide="ic.selectedDetail === $index">
                         <md-card-header>
                             <md-card-avatar>
-                                <md-icon class="material-icons">hotel</md-icon>
+                                <md-icon ng-class="{'blue': lodging.confirmed}" class="material-icons">hotel</md-icon>
                             </md-card-avatar>
                             <md-card-header-text>
                                 <span class="md-title">{{lodging.name}}
@@ -136,7 +137,8 @@
                                 <md-card-actions layout="row" layout-align="start center">
                                     <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
                                     <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, lodging, 'lodging', 'delete', lodging._id)">Delete</md-button>
-                                    <md-button class="md-primary md-raised" ng-click="ic.confirmDetail()">Add To My Itinerary</md-button>
+                                    <md-button ng-hide="lodging.confirmed" class="md-primary md-raised" ng-click="ic.newDetail(lodging, 'lodging', 'confirm', lodging._id)">Add To Itinerary</md-button>
+                                    <md-button ng-show="lodging.confirmed" class="md-primary md-raised" ng-click="ic.newDetail(lodging, 'lodging', 'unconfirm', lodging._id)">Remove From Itinerary</md-button>
                                 </md-card-actions>
                             </md-card-content>
                             </div>
@@ -182,7 +184,7 @@
             <div ng-hide="ic.selectedDetail === $index">
                 <md-card-header>
                     <md-card-avatar>
-                        <md-icon class="material-icons">local_activity</md-icon>
+                        <md-icon  ng-class="{'blue' : activity.confirmed}" class="material-icons">local_activity</md-icon>
                     </md-card-avatar>
                     <md-card-header-text>
                         <span class="md-title">{{activity.activity}} in {{activity.where}}
@@ -200,7 +202,8 @@
                     <md-card-actions layout="row" layout-align="start center">
                         <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
                         <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, activity, 'activities', 'delete', activity._id)">Delete</md-button>
-                        <md-button class="md-primary md-raised" ng-click="ic.confirmDetail()">Add To My Itinerary</md-button>
+                        <md-button ng-hide="activity.confirmed" class="md-primary md-raised" ng-click="ic.newDetail(activity, 'activities', 'confirm', activity._id)">Add To Itinerary</md-button>
+                        <md-button ng-show="activity.confirmed" class="md-primary md-raised" ng-click="ic.newDetail(activity, 'activities', 'unconfirm', activity._id)">Remove From Itinerary</md-button>
                     </md-card-actions>
                 </md-card-content>
             </div>

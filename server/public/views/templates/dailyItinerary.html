@@ -1,4 +1,8 @@
-<div ng-include="'views/partials/nav.html'"></div>
+<div ng-include=" '/views/partials/itinerary.html' "></div>
 <div class="container infoDiv">
-  <h1>DAILY ITINERARY</h1>
+  <div>
+    <h1>{{id.thisTrip.data.tripDestination}}
+      <br/>{{id.thisTrip.data.leaveDate}}-{{id.thisTrip.data.returnDate | date}}
+    </h1>
+  </div>
 </div>
