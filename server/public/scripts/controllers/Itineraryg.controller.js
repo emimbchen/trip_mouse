@@ -5,12 +5,10 @@ myApp.controller('itineraryGlanceController', function (UserService, $routeParam
     //current trip id
     self.tripId = $routeParams.tripId;
     self.thisTrip = UserService.currentTrip;
-    console.log(self.thisTrip);
 
     //function to get trips (Created and called)
     self.getThisTrip = function (id) {
         UserService.getThisTrip(id);
     }
     self.getThisTrip(self.tripId);
-
 });

@@ -1,9 +1,10 @@
+
 body, html {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   font-size: 14px;
-   background-color: lightseagreen;
+  background-color: lightseagreen;
 }
 
 .instructions .container h1 {
@@ -162,6 +163,82 @@ form {
   height: 100%;
 }
 
-/* .tripCards {
-  width: 40%;
+/* at a glancetable styling */
+.table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 40%;
+}
+
+.table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.table tr:nth-child(even){background-color: #f2f2f2;}
+
+.table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: lightseagreen;
+    color: white;
+}
+
+.logout{
+  float: right;
+}
+
+
+
+/* class for blue icons */
+.blue {
+  background-color: lightseagreen;
+}
+
+/* styling for drop down menu */
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: lightseagreen;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: white;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* .printable {
+
 } */
+

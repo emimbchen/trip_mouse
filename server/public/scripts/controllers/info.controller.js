@@ -102,23 +102,19 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
     })
   }
 
-  // //route to delete this trip deletes entire trip
-  // //will move this to user page
-  // vm.deleteTrip = function(){
-  //   $http.delete('/trip/' + tripId).then(function(response){
-  //     console.log('delete sent');
-  //     $location.path('/user');
-  //   }).catch(function(error){
-  //     console.log('delete not sent');
-  //   })
-  // }
-
   //ROUTE FOR ALL TRIP DETAIL EDITS EDITS
   // which route is determined by type: transportation, lodging, activities
-  //which action in switch: edit, delete, add
+  //which action in switch: edit, delete, add, confirm, unconfirm
   //detail id: id of the specific detail (necessary for edit and delete)
   vm.newDetail = function(objectTosend, type, action, detailId) {
-    console.log(objectTosend, type, action, detailId);
+    if(action == 'confirm') {
+      objectTosend.confirmed = true;
+      console.log('is it true? ', objectTosend);     
+    }
+    if(action == 'unconfirm'){
+      objectTosend.confirmed= false;
+    }
+
     objectTosend.action = action; 
     objectTosend.detailId = detailId;
     $http.put('/trip/' + type + '/' + tripId, objectTosend).then(function (response) {

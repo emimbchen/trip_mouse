@@ -65,10 +65,11 @@ router.put('/:id', function(req, res){
     });
 });
 
-// put route to accept new transportation details
+// put route for all transportation  edits, adds, confirms, unconfirms and deletes
 router.put('/transportation/:id', function(req, res){
     var id= req.params.id;
     var transportationOb = req.body;
+    transportationOb.kind= 'transportation';
     console.log(transportationOb);
     switch (transportationOb.action) {
         case 'edit':
@@ -106,9 +107,40 @@ router.put('/transportation/:id', function(req, res){
                 });
             });
             break;
+        case 'confirm':
+            Trip.findOneAndUpdate({ "_id": id, "transportation._id": transportationOb.detailId },
+                {
+                    "$set": {
+                        "transportation.$.confirmed": transportationOb.confirmed,
+                    }
+                }, function (err, trip) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                });
+            break;
+        case 'unconfirm':
+            Trip.findOneAndUpdate({ "_id": id, "transportation._id": transportationOb.detailId },
+                {
+                    "$set": {
+                        "transportation.$.confirmed": transportationOb.confirmed,
+                    }
+                }, function (err, trip) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                });
+            break;
         case 'delete':
         Trip.update({ "_id": id},
             { "$pull": { transportation: { _id: transportationOb.detailId }}},
+            { "$pull": { itinerary: { _id: transportationOb.detailId } } },
             function (err, trip) {
                 if (err) {
                     console.log(err);
@@ -121,10 +153,11 @@ router.put('/transportation/:id', function(req, res){
     }
 });
 
-//put route for new lodging
+//put route for all lodging edits, adds, confirms, unconfirms and deletes
 router.put('/lodging/:id', function (req, res) {
     var id = req.params.id;
     var lodgingOb = req.body;
+    lodgingOb.kind = 'lodging'; 
     console.log(lodgingOb);
     switch (lodgingOb.action) {
         case 'edit':
@@ -162,9 +195,40 @@ router.put('/lodging/:id', function (req, res) {
                 });
             });
             break;
+        case 'confirm':
+            Trip.findOneAndUpdate({ "_id": id, "lodging._id": lodgingOb.detailId },
+                {
+                    "$set": {
+                        "lodging.$.confirmed": lodgingOb.confirmed,
+                    }
+                }, function (err, trip) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                });
+            break;
+        case 'unconfirm':
+            Trip.findOneAndUpdate({ "_id": id, "lodging._id": lodgingOb.detailId },
+                {
+                    "$set": {
+                        "lodging.$.confirmed": lodgingOb.confirmed,
+                    }
+                }, function (err, trip) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                });
+            break;
         case 'delete':
             Trip.update({ "_id": id },
                 { "$pull": { lodging: { _id: lodgingOb.detailId } } },
+                { "$pull": { itinerary: { _id: lodgingOb.detailId } } },
                 function (err, trip) {
                     if (err) {
                         console.log(err);
@@ -177,10 +241,11 @@ router.put('/lodging/:id', function (req, res) {
     }
 });
 
-//put for new activities
+//put for all activities edits, adds, confirms, unconfirms and deletes
 router.put('/activities/:id', function (req, res) {
     var id = req.params.id;
     var activityOb = req.body;
+    activityOb.kind = 'activity';
     console.log(activityOb);
     switch (activityOb.action) {
         case 'edit':
@@ -216,9 +281,40 @@ router.put('/activities/:id', function (req, res) {
                 });
             });
             break;
+        case 'confirm':
+            Trip.findOneAndUpdate({ "_id": id, "activities._id": activityOb.detailId },
+                {
+                    "$set": {
+                        "activities.$.confirmed": activityOb.confirmed,
+                    }
+                }, function (err, trip) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                });
+            break;
+        case 'unconfirm':
+            Trip.findOneAndUpdate({ "_id": id, "activities._id": activityOb.detailId },
+                {
+                    "$set": {
+                        "activities.$.confirmed": activityOb.confirmed,
+                    }
+                }, function (err, trip) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                });
+            break;
         case 'delete':
             Trip.update({ "_id": id },
                 { "$pull": { activities: { _id: activityOb.detailId } } },
+                {"$pull": {itinerary: {_id: activityOb.detailId} } },
                 function (err, trip) {
                     if (err) {
                         console.log(err);

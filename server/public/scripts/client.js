@@ -77,7 +77,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .when('/itineraryDaily/:tripId', {
-      templateUrl: 'views/templates/itineraryGlance.html',
+      templateUrl: 'views/templates/dailyItinerary.html',
       controller: 'itineraryDailyController as id',
       ressolve: {
         getuser: function(UserService){

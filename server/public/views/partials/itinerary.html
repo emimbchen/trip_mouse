@@ -3,7 +3,14 @@
         <ul>
         <li><a href="#/user">Home Page</a></li>
         <li><a href="#/info/{{ig.tripId}}">Edit Details</a></li>
-        <li><a href='#/logout'>Log Out</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Itinerary</a>
+            <div class="dropdown-content">
+                <a href="#/itineraryGlance/{{ig.tripId}}">At a Glance Itinerary</a>
+                <a href="#/itineraryDaily/{{ig.tripId}}">Daily Itinerary</a>
+            </div>
+        </li>
+        <li class="logout"><a href='#/logout'>Log Out</a></li>
         </ul>
     </div>
 </div>

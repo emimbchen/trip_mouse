@@ -1,8 +1,96 @@
 <div ng-include=" '/views/partials/itinerary.html' "></div>
 <div class="container infoDiv">
+<div class="printable">
     <div>
-        <h1>{{ig.thisTrip.data.tripDestination}} at a Glance Itinerary</h1>
-        <h2>{{ig.thisTrip.data.leaveDate | date}}-{{ig.thisTrip.data.returnDate | date}}</h2>
+        <h1>{{ig.thisTrip.data.tripDestination}}<br/>{{ig.thisTrip.data.leaveDate | date}}-{{ig.thisTrip.data.returnDate | date}}
+        </h1>
     </div>
+    <div class="allTables">
+    <md-table-container>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan=7> Transportation at a Glance</th>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>ETD</th>
+                    <th>City</th>
+                    <th>ETA</th>
+                    <th>City</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="transportation in ig.thisTrip.transportation| orderBy: 'date'">
+                    <td>{{transportation.type.type}}</td>
+                    <td>{{transportation.date | date}}</td>
+                    <td>{{transportation.leaveTime | date: 'shortTime'}}</td>
+                    <td>{{transportation.from}}</td>
+                    <td>{{transportation.arriveTime | date: 'shortTime'}}</td>
+                    <td>{{transportation.to}}</td>
+                    <td>{{transportation.details}}</td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </md-table-container><br/>
+    <md-table-container>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan=7> Lodgings at a Glance</th>
+                </tr>
+                <tr>
+                    <th>Hotel</th>
+                    <th>Check-In</th>
+                    <th>Check-Out</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="lodging in ig.thisTrip.lodging | orderBy: 'checkIn'">
+                    <td>{{lodging.name}}</td>
+                    <td>{{lodging.checkIn | date}}</td>
+                    <td>{{lodging.checkOut | date: 'shortTime'}}</td>
+                    <td>{{lodging.address}}</td>
+                    <td>{{lodging.phoneNumber}}</td>
+                    <td>{{lodging.details}}</td>
+                </tr>
+            
+            </tbody>
+        </table>
+    </md-table-container><br/>
+    <md-table-container>
+        <table class="table">
+            
+            <thead>
+                <tr>
+                    <th colspan=7> Activities at a Glance</th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="activity in ig.thisTrip.activity | orderBy: 'when'">
+                    <td>{{activity.activity}}</td>
+                    <td>{{activity.when | date}}</td>
+                    <td>{{activity.where}}</td>
+                    <td>{{activity.details}}</td>
+                </tr>
+            
+            </tbody>
+        </table>
+    </md-table-container>
+    </div>
+    </div>
+    <md-button  ng-click="window.print()" layout-align="end end" class="md-primary md-raised">Print</md-button>
     
 </div>
