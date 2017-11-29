@@ -82,7 +82,8 @@ router.put('/transportation/:id', function(req, res){
                     "transportation.$.date" : transportationOb.date,
                     "transportation.$.leaveTime" : transportationOb.leaveTime,
                     "transportation.$.arriveTime" : transportationOb.arriveTime,
-                    "transportation.$.price" : transportationOb.price,
+                    "transportation.$.price.cost" : transportationOb.price.cost,
+                    "transportation.$.price.for": transportationOb.price.for,
                     "transportation.$.details" : transportationOb.details,
                 }
             }, function( err, trip){
@@ -170,7 +171,8 @@ router.put('/lodging/:id', function (req, res) {
                         "lodging.$.address": lodgingOb.address,
                         "lodging.$.phoneNumber": lodgingOb.phoneNumber,
                         "lodging.$.website": lodgingOb.website,
-                        "lodging.$.price":  lodgingOb.price,
+                        "lodging.$.price.cost":  lodgingOb.price.cost,
+                        "lodging.$.price.for": lodgingOb.price.for,
                         "lodging.$.details": lodgingOb.details,
                     }
                 }, function (err, trip) {
@@ -256,7 +258,8 @@ router.put('/activities/:id', function (req, res) {
                         "activities.$.where": activityOb.where,
                         "activities.$.when": activityOb.when,
                         "activities.$.website": activityOb.website,
-                        "activities.$.price": activityOb.price,
+                        "activities.$.price.cost": activityOb.price.cost,
+                        "activities.$.price.for": activityOb.price.for,
                         "activities.$.details": activityOb.details,
                     }
                 }, function (err, trip) {

@@ -24,15 +24,22 @@
                 <label>Website:</label>
                 <input type="text" ng-model="ic.lodging.website">
             </md-input-container>
+            <div layout="rows">
             <md-input-container>
                 <label>Price:</label>
-                <input type="text" ng-model="ic.lodging.price">
+                <input type="text" ng-model="ic.lodging.price.cost">
             </md-input-container>
+            <md-radio-group ng-model="ic.lodging.price.for">
+                <md-radio-button value="Total" class="md-primary">Total</md-radio-button>
+                <md-radio-button value="Per Person" class="md-primary">Per Person</md-radio-button>
+            </md-radio-group>
+            </div>
+
             <md-input-container>
                 <label>Notes:</label>
                 <input type="text" ng-model="ic.lodging.details">
             </md-input-container>
-            <md-button class="md-primary md-raised" ng-click="ic.newDetail(ic.lodging, 'lodging', 'add')" class="md-raised">Submit</md-button>
+            <md-button type="submit" class="md-primary md-raised" ng-click="ic.newDetail(ic.lodging, 'lodging', 'add')" class="md-raised">Submit</md-button>
         </div>
     </form>
 </md-dialog>

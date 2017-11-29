@@ -7,6 +7,20 @@ body, html {
   background-color: lightseagreen;
 }
 
+#container {
+  margin-top: 10px;
+}
+
+.container p{
+  margin-top : 14px;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  height: auto;
+}
+
 .instructions .container h1 {
   font-size: 32px;
   font-weight: 600;
@@ -22,23 +36,9 @@ body, html {
   margin-top: 14px;
 }
 
-#container {
-  margin-top: 10px;
-}
-
-.container p{
-  margin-top : 14px;
-}
-
-.container {
-  width: 80%;
-  margin: auto;
-  height: 100%;
-}
-
 #trips {
   background-color: white;
-  padding-bottom: 15%;
+  height: 100%;
   text-align: center;
 }
 
@@ -157,17 +157,20 @@ form {
 
 .mainContainer {
   height:100%;
+  width: 80%;
 }
 
 .tabDiv{
   height: 100%;
+  padding-bottom: 20%;
 }
 
 /* at a glancetable styling */
+
 .table {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 40%;
+    width: 60%;
 }
 
 .table td, table th {
@@ -238,7 +241,12 @@ li.dropdown {
     display: block;
 }
 
-/* .printable {
+.printable {
+}
 
-} */
+.dailyTitles {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
 

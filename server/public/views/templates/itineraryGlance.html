@@ -6,8 +6,8 @@
         </h1>
     </div>
     <div class="allTables">
-    <md-table-container>
-        <table class="table">
+        <div layout-sm="column" layout="rows">
+        <table flex="50" class="table">
             <thead>
                 <tr>
                     <th colspan=7> Transportation at a Glance</th>
@@ -35,9 +35,7 @@
                 
             </tbody>
         </table>
-    </md-table-container><br/>
-    <md-table-container>
-        <table class="table">
+        <table flex="50" class="table">
             <thead>
                 <tr>
                     <th colspan=7> Lodgings at a Glance</th>
@@ -63,10 +61,9 @@
             
             </tbody>
         </table>
-    </md-table-container><br/>
-    <md-table-container>
-        <table class="table">
-            
+        </div>
+        <div layout-sm="column" layout="row">
+        <table flex="50" class="table">
             <thead>
                 <tr>
                     <th colspan=7> Activities at a Glance</th>
@@ -88,7 +85,7 @@
             
             </tbody>
         </table>
-    </md-table-container>
+        </div>
     </div>
     </div>
     <md-button  ng-click="window.print()" layout-align="end end" class="md-primary md-raised">Print</md-button>

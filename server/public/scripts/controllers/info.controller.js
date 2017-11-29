@@ -12,7 +12,7 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   vm.transportOptions = [{ type: 'Airplane', icon: 'flight' }, { type: 'Train', icon: 'train' }, { type: 'Bus', icon: 'directions_bus'}, {type: 'Subway', icon: 'subway'}, {type: 'Car', icon: 'directions_car'}, {type: 'Taxi', icon: "local_taxi"}, {type: 'Other', icon: "navigation"}];
   //current trip Id from the Url
   var tripId = $routeParams.tripId;
-  console.log(tripId);
+  // console.log(tripId);
   //variable to trigger detail accordian
   vm.selectedItem = null; 
   //variable to trigger edit view
@@ -114,9 +114,10 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
     if(action == 'unconfirm'){
       objectTosend.confirmed= false;
     }
-
     objectTosend.action = action; 
     objectTosend.detailId = detailId;
+    console.log(objectTosend, type, action, detailId);
+    
     $http.put('/trip/' + type + '/' + tripId, objectTosend).then(function (response) {
       console.log('new', type, 'sent');
       $mdDialog.hide();

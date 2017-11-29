@@ -6,18 +6,11 @@ myApp.service('UserService', function($http, $location){
   //object to hold results of getTrips();
   self.tripObject = {};
   //object to hold active trip from selectTrip();
-  self.currentTrip = {};
-  
+  self.currentTrip = {totalCost: 0, costPerPerson: 0};
+  //gets todays date
   var today = (new Date()).toISOString();
   
-  // //function to select current trip
-  // self.selectTrip= function(id){
-  //   console.log('trip selected');
-  //   self.getThisTrip(id);
-  //   console.log('Current Trip Id', id);
-  // }
-  
-  //sorting function
+  //sorting sorts trips according to their relativity to today's date
   self.sortTrips = function (tripArray) {
     self.tripObject.currentTrips = [];
     self.tripObject.pastTrips = [];
@@ -31,7 +24,8 @@ myApp.service('UserService', function($http, $location){
     }
   }
 
-  //gets trips and sorts them for the home page
+  //gets trips and calls sortTrips to sort them for the home page
+  //stored in self.tripObject.Trips
   self.getTrips = function (){
     return $http.get('/trip').then(function(response) {
       self.tripObject.trips = response.data;
@@ -41,14 +35,47 @@ myApp.service('UserService', function($http, $location){
     });
   }
 
+  //calculates total cost and cost per person for confirmed details
+  function calculateCosts(arrayIn){
+    console.log(arrayIn);
+    
+    var travellers = self.currentTrip.data.travellers;
+    for( var i = 0; i < arrayIn.length; i++){
+      var total = 0; 
+      if ( arrayIn[i].price.for === 'Total' ) {
+        total += parseInt(arrayIn[i].price.cost);
+      }
+      if ( arrayIn[i].price.for === 'Per Person') {
+        total += arrayIn[i].price.cost * travellers;
+        
+      }
+    }
+    if(total === undefined){
+      total = 0;
+    }
+    console.log(total);
+    return total;
+  }
+
   //sorts the confirmed details into respective categories
+  //also sorts details into arrays in respective dates
   self.sortDetails = function (dataObject) {
     self.currentTrip.transportation = [];
     self.currentTrip.lodging = [];
     self.currentTrip.activity = [];
+    // console.log(dataObject);
     sortTransportation(dataObject);
     sortLodgings(dataObject);
     sortActivities(dataObject);
+    sortingTransportations(self.currentTrip.transportation);
+    sortingLodgings(self.currentTrip.lodging);
+    sortingActivities(self.currentTrip.activity);
+    //calculates total & cost per person
+    var transportationTotal = calculateCosts(self.currentTrip.transportation);
+    var lodgingTotal = calculateCosts(self.currentTrip.lodging);
+    var activityTotal = calculateCosts(self.currentTrip.activity);
+    self.currentTrip.totalCost = (transportationTotal + lodgingTotal + activityTotal);
+    self.currentTrip.costPerPerson = (transportationTotal+ lodgingTotal + activityTotal)/ self.currentTrip.data.travellers; 
   }
 
     //sorts confirmed transportations from transportation array
@@ -56,16 +83,16 @@ myApp.service('UserService', function($http, $location){
       for (var i = 0; i < dataObject.transportation.length; i++) {
         if(dataObject.transportation[i].confirmed === true){
           self.currentTrip.transportation.push(dataObject.transportation[i]);
-          sortingTransportations(self.currentTrip.transportation);
         }
     }
   }
     //sorts confirmed lodging from lodging array
     function sortLodgings(dataObject) {
+      // console.log('Data Object Lodging', dataObject);
       for (var i = 0; i < dataObject.lodging.length; i++) {
         if (dataObject.lodging[i].confirmed === true) {
           self.currentTrip.lodging.push(dataObject.lodging[i]);
-          sortingLogdings(self.currentTrip.lodging);
+          
         }
       }
     }
@@ -74,22 +101,18 @@ myApp.service('UserService', function($http, $location){
       for (var i = 0; i < dataObject.activities.length; i++) {
         if (dataObject.activities[i].confirmed === true) {
           self.currentTrip.activity.push(dataObject.activities[i]);
-          sortingActivities(self.currentTrip.activity)
+          
         }
       }
     }
 
   //loop through dateArray and add detail to the date 
   function sortingTransportations(detailArray){
-    console.log('sorting hat!');
     for (var j = 0; j < detailArray.length; j++){
       var currentDetail = detailArray[j];
-      console.log(self.currentTrip);
-      for(var k = 0; k < self.currentTrip.dateArray.length; k++){
-        self.currentTrip.dateArray[k].events = [];
-        if (currentDetail.date === (self.currentTrip.dateArray[k].date).toISOString()){
-          self.currentTrip.dateArray[k].events.push(currentDetail);
-          console.log(self.currentTrip);
+      for(var n = 0; n < self.currentTrip.dateArray.length; n++){
+        if (currentDetail.date === (self.currentTrip.dateArray[n].date).toISOString()){
+          self.currentTrip.dateArray[n].transportations.push(currentDetail);
         }
       }
     }
@@ -97,15 +120,15 @@ myApp.service('UserService', function($http, $location){
 
   //loop through dateArray and add detail to the date 
   function sortingLodgings(detailArray) {
-    console.log('sorting hat!');
+    // console.log('lodging sorting hat!');
     for (var j = 0; j < detailArray.length; j++) {
       var currentDetail = detailArray[j];
-      console.log(self.currentTrip);
+      // console.log(self.currentTrip);
       for (var k = 0; k < self.currentTrip.dateArray.length; k++) {
-        self.currentTrip.dateArray[k].events = [];
+        // self.currentTrip.dateArray[k].lodgings = [];
         if (currentDetail.checkIn === (self.currentTrip.dateArray[k].date).toISOString()) {
-          self.currentTrip.dateArray[k].events.push(currentDetail);
-          console.log(self.currentTrip);
+          self.currentTrip.dateArray[k].lodgings.push(currentDetail);
+          // console.log(self.currentTrip);
         }
       }
     }
@@ -113,15 +136,15 @@ myApp.service('UserService', function($http, $location){
 
   //loop through dateArray and add detail to the date 
   function sortingActivities(detailArray) {
-    console.log('sorting hat!');
+    // console.log('activities sorting hat!');
     for (var j = 0; j < detailArray.length; j++) {
       var currentDetail = detailArray[j];
-      console.log(self.currentTrip);
+      // console.log(self.currentTrip);
       for (var k = 0; k < self.currentTrip.dateArray.length; k++) {
-        self.currentTrip.dateArray[k].events = [];
+        // self.currentTrip.dateArray[k].activities = [];
         if (currentDetail.when === (self.currentTrip.dateArray[k].date).toISOString()) {
-          self.currentTrip.dateArray[k].events.push(currentDetail);
-          console.log(self.currentTrip);
+          self.currentTrip.dateArray[k].activities.push(currentDetail);
+          // console.log(self.currentTrip);
         }
       }
     }
@@ -145,7 +168,7 @@ myApp.service('UserService', function($http, $location){
     var endDate = moment(endDate);
     self.currentTrip.dateArray = [];
     while (date <= endDate) {
-      self.currentTrip.dateArray.push({date: date.toDate()});
+      self.currentTrip.dateArray.push({date: date.toDate(), lodgings: [], transportations: [], activities: []});
       date = date.clone().add(1, 'd');
     }
   }

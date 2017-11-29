@@ -1,4 +1,4 @@
-<div ng-include=" '/views/partials/itinerary.html' "></div>
+<div ng-include=" '/views/partials/itinerary2.html' "></div>
 <div class="container infoDiv">
   <div>
     <h1>{{id.thisTrip.data.tripDestination}}
@@ -7,9 +7,31 @@
     <md-table-container>
       <table class="table">
         <tbody>
-          <tr ng-repeat="day in id.thisTrip.dateArray" >
-            <td>{{day.date | date: fullDate}}</td>
-          </tr>
+          <tr ng-repeat="event in id.thisTrip.dateArray track by $index" >
+            <td><span class="dailyTitles">{{event.date | date: fullDate}}</span>
+              <div ng-repeat="transportation in event.transportations track by $index">
+                <span>Transportation- {{transportation.type.type}}: {{transportation.from}}-{{transportation.to}}<br/>
+                {{transportation.leaveTime | date: 'shortTime'}}-{{transportation.arriveTime | date: 'shortTime'}}<br/>
+                Notes: {{transportation.details}}
+              </span>
+              </div>
+              <br/>
+              <div ng-repeat="lodging in event.lodgings track by $index">
+                <span>Lodging- {{lodging.name}} <br/> {{lodging.address}} 
+                  <br/>{{lodging.checkIn | date}}-{{lodging.checkOut | date}}
+                  <br/>Phone Number: {{lodging.PhoneNumber}} <br/>
+                  Notes: {{lodging.details}}
+                </span>
+              </div>
+              <br/>
+              <div ng-repeat="activity in event.activities track by $index">
+                <span>{{activity.activity}}
+                  <br/> {{activity.where}}
+                  <br/> Notes: {{activity.details}}
+                </span>
+              </div>
+            </td>
+
         </tbody>
       </table>
     </md-table-container>

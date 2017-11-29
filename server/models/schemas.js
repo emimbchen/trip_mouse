@@ -7,9 +7,9 @@ var TransportationSchema = new Schema({
     from: String,
     to: String,
     date: Date,
-    leaveTime: Date,
-    arriveTime: Date,
-    price: Number,
+    leaveTime: { type: Date, default: '1970 - 01 - 01T11: 00:00.000Z'},
+    arriveTime: { type: Date, default: '1970 - 01 - 01T11: 00:00.000Z'},
+    price: Object,
     details: String,
     confirmed: { type: Boolean, default: false }
 
@@ -21,9 +21,9 @@ var LodgingSchema = new Schema({
     checkIn: Date,
     checkOut: Date,
     address: String,
-    phoneNumber: Number,
+    phoneNumber: { type: Number, default: 0 },
     website: String,
-    price: Number,
+    price: Object,
     details: String,
     confirmed: { type: Boolean, default: false }
 });
@@ -34,7 +34,7 @@ var ActivitiesSchema = new Schema({
     where: String,
     when: Date,
     website: String,
-    price: Number,
+    price: Object,
     details: String,
     confirmed: {type: Boolean, default: false}
 });
