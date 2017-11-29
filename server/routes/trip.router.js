@@ -65,7 +65,7 @@ router.put('/:id', function(req, res){
     });
 });
 
-// put route to accept new transportation details
+// put route for all transportation  edits, adds, confirms, unconfirms and deletes
 router.put('/transportation/:id', function(req, res){
     var id= req.params.id;
     var transportationOb = req.body;
@@ -118,17 +118,7 @@ router.put('/transportation/:id', function(req, res){
                         console.log(err);
                         res.sendStatus(500);
                     } else {
-                        Trip.findOne({ _id: id }, function (err, trip) {
-                            trip.itinerary.push(transportationOb);
-                            trip.save(function (err) {
-                                if (err) {
-                                    console.log(err);
-                                    res.sendStatus(500);
-                                } else {
-                                    res.sendStatus(201);
-                                }
-                            });
-                        });
+                        res.sendStatus(201);
                     }
                 });
             break;
@@ -143,17 +133,7 @@ router.put('/transportation/:id', function(req, res){
                         console.log(err);
                         res.sendStatus(500);
                     } else {
-                        Trip.update({ "_id": id },
-                            { "$pull": { itinerary: { _id: transportationOb.detailId } } },
-                            function (err, trip) {
-                                if (err) {
-                                    console.log(err);
-                                    res.sendStatus(500);
-                                } else {
-                                    res.sendStatus(201);
-                                }
-                            }
-                        ); 
+                        res.sendStatus(201);
                     }
                 });
             break;
@@ -173,7 +153,7 @@ router.put('/transportation/:id', function(req, res){
     }
 });
 
-//put route for new lodging
+//put route for all lodging edits, adds, confirms, unconfirms and deletes
 router.put('/lodging/:id', function (req, res) {
     var id = req.params.id;
     var lodgingOb = req.body;
@@ -226,17 +206,7 @@ router.put('/lodging/:id', function (req, res) {
                         console.log(err);
                         res.sendStatus(500);
                     } else {
-                        Trip.findOne({ "_id": id }, function (err, trip) {
-                            trip.itinerary.push(lodgingOb);
-                            trip.save(function (err) {
-                                if (err) {
-                                    console.log(err);
-                                    res.sendStatus(500);
-                                } else {
-                                    res.sendStatus(201);
-                                }
-                            });
-                        });
+                        res.sendStatus(201);
                     }
                 });
             break;
@@ -251,17 +221,7 @@ router.put('/lodging/:id', function (req, res) {
                         console.log(err);
                         res.sendStatus(500);
                     } else {
-                        Trip.update({ "_id": id },
-                            { "$pull": { itinerary: { _id: lodgingOb.detailId } } },
-                            function (err, trip) {
-                                if (err) {
-                                    console.log(err);
-                                    res.sendStatus(500);
-                                } else {
-                                    res.sendStatus(201);
-                                }
-                            }
-                        );
+                        res.sendStatus(201);
                     }
                 });
             break;
@@ -281,7 +241,7 @@ router.put('/lodging/:id', function (req, res) {
     }
 });
 
-//put for new activities
+//put for all activities edits, adds, confirms, unconfirms and deletes
 router.put('/activities/:id', function (req, res) {
     var id = req.params.id;
     var activityOb = req.body;
@@ -332,17 +292,7 @@ router.put('/activities/:id', function (req, res) {
                         console.log(err);
                         res.sendStatus(500);
                     } else {
-                        Trip.findOne({ _id: id }, function (err, trip) {
-                            trip.itinerary.push(activityOb);
-                            trip.save(function (err) {
-                                if (err) {
-                                    console.log(err);
-                                    res.sendStatus(500);
-                                } else {
-                                    res.sendStatus(201);
-                                }
-                            });
-                        });
+                        res.sendStatus(201);
                     }
                 });
             break;
@@ -357,17 +307,7 @@ router.put('/activities/:id', function (req, res) {
                         console.log(err);
                         res.sendStatus(500);
                     } else {
-                        Trip.update({ "_id": id },
-                            { "$pull": { itinerary: { _id: activityOb.detailId } } },
-                            function (err, trip) {
-                                if (err) {
-                                    console.log(err);
-                                    res.sendStatus(500);
-                                } else {
-                                    res.sendStatus(201);
-                                }
-                            }
-                        );
+                        res.sendStatus(201);
                     }
                 });
             break;

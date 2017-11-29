@@ -48,8 +48,7 @@ var TripSchema = new Schema({
     travellers: Number,
     transportation: [TransportationSchema],
     lodging: [LodgingSchema],
-    activities: [ActivitiesSchema],
-    itinerary:[]
+    activities: [ActivitiesSchema]
 });
 
 

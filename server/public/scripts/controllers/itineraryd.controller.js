@@ -1,4 +1,4 @@
-myApp.controller('itineraryDailyController', function (UserService, $routeParams) {
+myApp.controller('itineraryDailyController', function (UserService, $routeParams, $filter) {
     console.log('itineraryDailyController created');
     var self = this;
     self.userService = UserService;
@@ -10,23 +10,6 @@ myApp.controller('itineraryDailyController', function (UserService, $routeParams
     self.getThisTrip = function (id) {
         UserService.getThisTrip(id);
     }
-    self.getThisTrip(self.tripId);
-      var startDate = (new Date('2018,01,26'));
-    console.log('StartDate', startDate);
-
-    function dateConverter(isoDate){
-        var date = {};
-        // date.year = isoDate.getFullYear();
-        date.month = isoDate.getMonth() + 1;
-        date.day = isoDate.getDate();
-        return date;
-    }
-    console.log(dateConverter('2018 - 01 - 26T06:00:00.000Z'));
-    
+    self.getThisTrip(self.tripId);  
 
 });
-
-// function arrayOfDates(startDate, endDate){
-//     var dates = [];
-//     for(var i = startDate; i <= endDate; i++ )
-// };

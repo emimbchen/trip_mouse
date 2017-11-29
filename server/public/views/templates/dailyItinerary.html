@@ -2,7 +2,16 @@
 <div class="container infoDiv">
   <div>
     <h1>{{id.thisTrip.data.tripDestination}}
-      <br/>{{id.thisTrip.data.leaveDate}}-{{id.thisTrip.data.returnDate | date}}
+      <br/>{{id.thisTrip.data.leaveDate | date}}-{{id.thisTrip.data.returnDate | date}}
     </h1>
+    <md-table-container>
+      <table class="table">
+        <tbody>
+          <tr ng-repeat="day in id.thisTrip.dateArray" >
+            <td>{{day.date | date: fullDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
   </div>
 </div>
