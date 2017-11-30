@@ -1,4 +1,4 @@
-<div ng-include=" '/views/partials/itinerary2.html' "></div>
+<div class="do-not-print" ng-include=" '/views/partials/itinerary2.html' "></div>
 <div class="container infoDiv center">
   <div>
     <h1>{{id.thisTrip.data.tripDestination}}
@@ -36,4 +36,5 @@
       </table>
     </md-table-container>
   </div>
+  <md-button href="#" onclick="window.print(); return false;" layout-align="end end" class="md-primary md-raised do-not-print">Print</md-button>
 </div>

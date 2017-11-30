@@ -37,25 +37,28 @@ myApp.service('UserService', function($http, $location){
 
   //calculates total cost and cost per person for confirmed details
   function calculateCosts(arrayIn){
-    console.log(arrayIn);
-    
+    if(arrayIn.length === 0){
+      // console.log('array has no length');
+      return 0;
+    }
     var travellers = self.currentTrip.data.travellers;
     for( var i = 0; i < arrayIn.length; i++){
+      // console.log(arrayIn);
       var total = 0; 
       if ( arrayIn[i].price.for === 'Total' ) {
         total += parseInt(arrayIn[i].price.cost);
+        // console.log("totalIn",parseInt(arrayIn[i].price.cost));
+        
       }
       if ( arrayIn[i].price.for === 'Per Person') {
         total += arrayIn[i].price.cost * travellers;
+        // console.log("per person",parseInt(arrayIn[i].price.cost));
         
       }
-    }
-    if(total === undefined){
-      total = 0;
-    }
-    console.log(total);
+    // console.log('total', total);
     return total;
   }
+}
 
   //sorts the confirmed details into respective categories
   //also sorts details into arrays in respective dates

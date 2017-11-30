@@ -5,6 +5,7 @@ myApp.controller('LoginController', function($http, $location, UserService) {
       username: '',
       password: ''
     };
+
     vm.message = '';
 
     vm.login = function() {
@@ -20,11 +21,11 @@ myApp.controller('LoginController', function($http, $location, UserService) {
             $location.path('/user'); // http://localhost:5000/#/user
           } else {
             console.log('LoginController -- login -- failure: ', response);
-            vm.message = "Wrong!!";
+            vm.message = "Please enter the correct username and password";
           }
         }).catch(function(response){
           console.log('LoginController -- registerUser -- failure: ', response);
-          vm.message = "Wrong!!";
+          vm.message = "Please enter the correct username and password";
         });
       }
     };

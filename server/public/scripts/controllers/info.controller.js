@@ -9,7 +9,7 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   //show Edit for general trip editing (not details)
   vm.showEdit = false;
   //transportation options for ng-repeat
-  vm.transportOptions = [{ type: 'Airplane', icon: 'flight' }, { type: 'Train', icon: 'train' }, { type: 'Bus', icon: 'directions_bus'}, {type: 'Subway', icon: 'subway'}, {type: 'Car', icon: 'directions_car'}, {type: 'Taxi', icon: "local_taxi"}, {type: 'Other', icon: "navigation"}];
+  vm.transportOptions = [{ type: 'Airplane', icon: 'flight' }, { type: 'Train', icon: 'train' }, { type: 'Bus', icon: 'directions_bus'}, {type: 'Subway', icon: 'subway'}, {type: 'Car', icon: 'directions_car'}, {type: 'Taxi', icon: "local_taxi"}, {type: 'Boat', icon: "directions_boat"}, {type: 'Other', icon: "navigation"}];
   //current trip Id from the Url
   var tripId = $routeParams.tripId;
   // console.log(tripId);

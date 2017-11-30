@@ -31,9 +31,16 @@ body, html {
 }
 
 .instructions {
-  background-color: #333333;
+  background-color: #062322;
   color: #DDDDDD;
   padding: 15px;
+}
+
+.logIn {
+  width: 40%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
 }
 
 #entryForm {
@@ -73,7 +80,7 @@ body, html {
 }
 
 .navbar {
-  background-color: #333333;
+  background-color: #062322;
   width: 100%;
   border-radius: 0px;
 }
@@ -127,10 +134,8 @@ h3 {
 }
 
 #mousePic {
-  float: right;
-  height: 150px;
-  width: auto;
-  margin-top: -76px;
+  float: left;
+  
 }
 
 .dialog {
@@ -146,6 +151,8 @@ md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
   background-color: lightseagreen;
   color: white;
 }
+
+
 
 .detailInfo {
   margin-top: 10px;
@@ -250,8 +257,6 @@ li.dropdown {
     display: block;
 }
 
-.printable {
-}
 
 .dailyTitles {
   font-size: 20px;

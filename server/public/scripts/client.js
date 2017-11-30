@@ -42,7 +42,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/usernav', {
       templateUrl: 'views/partials/user.html',
-      controller: 'PartialController as pc',
+      controller: 'UserController as uc',
       resolve: {
         getuser: function(UserService){
           return UserService.getuser();

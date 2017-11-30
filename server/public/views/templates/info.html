@@ -51,10 +51,11 @@
                         </md-card-header>
                         <!-- hidden details until expanded -->
                         <md-card-content ng-show= '$index === ic.selectedItem'>
-                            <p>{{transportation.leaveTime | date: 'shortTime'}}-{{transportation.arriveTime | date: 'shortTime'}}</p>
+                            <md-content>
+                            <p>{{transportation.leaveTime | date: 'shortTime'}}-{{transportation.arriveTime  | date: 'shortTime'}}</p>
                             <p>Cost: {{transportation.price.cost | currency}} {{transportation.price.for}}</p>
                             <p>Notes: {{transportation.details}}</p>
-                            <p></p>
+                            </md-content>
                             <md-card-actions layout-sm="column" layout-md="column" layout="row" layout-align="start center">
                                 <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
                                 <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, transportation, 'transportation', 'delete', transportation._id)">Delete</md-button>
@@ -151,11 +152,13 @@
                             </md-card-header>
                             <!-- hidden details until expanded -->
                             <md-card-content ng-show='$index === ic.selectedItem'>
+                                <md-content>
                                 <p>Address: {{lodging.address}}</p>
                                 <p>Phone Number: {{lodging.phoneNumber}}</p>
                                 <p>Website: {{lodging.website}}</p>
                                 <p>Cost per Night: {{lodging.price.cost}} {{lodging.price.for}}</p>
                                 <p>Notes: {{lodging.details}}</p>
+                                </md-content>
                                 <md-card-actions layout-md= "column" layout-sm="column" layout="row" layout-align="start center">
                                     <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
                                     <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, lodging, 'lodging', 'delete', lodging._id)">Delete</md-button>
@@ -197,7 +200,7 @@
                                     </div>
                                     <md-input-container>
                                         <label>Notes:</label>
-                                        <input type="text" ng-model="lodging.details">
+                                        <textarea rows="4" cols="30" type="text" ng-model="lodging.details"></textarea>
                                     </md-input-container>
                                     <md-card-actions  layout="row" layout-align="start center">
                                         <md-button class="md-primary md-raised" ng-click="ic.newDetail(lodging, 'lodging', 'edit' , lodging._id)">Submit</md-button>
@@ -233,9 +236,11 @@
                 </md-card-header>
                 <!-- hidden details until expanded -->
                 <md-card-content ng-show='$index === ic.selectedItem'>
+                    <md-content>
                     <p>Website: {{activity.website}}</p>
                     <p> Cost: {{activity.price.cost}} {{activity.price.for}}</p>
                     <p>Notes: {{activity.details}}</p>
+                    </md-content>
                     <md-card-actions layout-md="column" layout-sm="column" layout="row" layout-align="start center">
                         <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
                         <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, activity, 'activities', 'delete', activity._id)">Delete</md-button>
@@ -274,7 +279,7 @@
                     </div>
                     <md-input-container>
                         <label>Notes:</label>
-                        <input type="text" ng-model="activity.details">
+                        <textarea rows="4" cols="30" type="text" ng-model="activity.details"></textarea>
                     </md-input-container>
                     <md-card-actions layout="row" layout-align="start center">
                         <md-button class="md-primary md-raised" ng-click="ic.newDetail(activity, 'activities', 'edit' , activity._id)">Submit</md-button>

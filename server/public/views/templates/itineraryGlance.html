@@ -1,6 +1,6 @@
-<div ng-include=" '/views/partials/itinerary.html' "></div>
+<div  class="do-not-print" ng-include=" '/views/partials/itinerary.html' "></div>
 <div class="container infoDiv trips center">
-<div class="printable">
+
     <div>
         <h1>{{ig.thisTrip.data.tripDestination}}<br/>{{ig.thisTrip.data.leaveDate | date}}-{{ig.thisTrip.data.returnDate | date}}
         </h1>
@@ -87,7 +87,6 @@
         </table>
         </div>
     </div>
-    </div>
-    <md-button  ng-click="window.print()" layout-align="end end" class="md-primary md-raised">Print</md-button>
+    <md-button href="#" onclick="window.print(); return false;" layout-align="end end" class="md-primary md-raised do-not-print">Print</md-button>
     
 </div>
