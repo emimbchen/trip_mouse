@@ -7,6 +7,10 @@ body, html {
   background-color: lightseagreen;
 }
 
+.center {
+  text-align: center;
+}
+
 #container {
   margin-top: 10px;
 }
@@ -36,10 +40,11 @@ body, html {
   margin-top: 14px;
 }
 
-#trips {
+.trips {
   background-color: white;
+  width: 80%;
   height: 100%;
-  text-align: center;
+  margin: auto;
 }
 
 .infoDiv {
@@ -162,7 +167,10 @@ form {
 
 .tabDiv{
   height: 100%;
-  padding-bottom: 20%;
+}
+
+.floatLeft {
+  float: left;
 }
 
 /* at a glancetable styling */
@@ -171,6 +179,7 @@ form {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 60%;
+    margin: auto;
 }
 
 .table td, table th {

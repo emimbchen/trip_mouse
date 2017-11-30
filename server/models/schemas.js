@@ -7,8 +7,8 @@ var TransportationSchema = new Schema({
     from: String,
     to: String,
     date: Date,
-    leaveTime: { type: Date, default: '1970 - 01 - 01T11: 00:00.000Z'},
-    arriveTime: { type: Date, default: '1970 - 01 - 01T11: 00:00.000Z'},
+    leaveTime: Date,
+    arriveTime: Date,
     price: Object,
     details: String,
     confirmed: { type: Boolean, default: false }

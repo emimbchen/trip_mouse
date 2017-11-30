@@ -1,9 +1,7 @@
 <div ng-include="'views/partials/user.html'"></div>
-<div class="container" id="trips">
-
+<div class="trips center">
     <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
     <md-button class="md-raised md-primary" href="#/newtrip">Make A New Trip</md-button>
-
     <h2>Current Trips</h2>
     <div layout="column" layout-align="center center">
     <md-card  flex="40" class="tripCards" ng-repeat="trip in uc.tripObject.currentTrips">
@@ -33,9 +31,4 @@
     </md-card-header>
 </md-card>
 </div>
-    <!-- <div ng-repeat="trip in uc.tripObject.pastTrips">
-        <a href="#/info/{{trip._id}}">{{trip.tripDestination}}</a><br/>
-        {{trip.leaveDate | date}} - {{trip.returnDate | date}}
-
-    </div> -->
 </div>

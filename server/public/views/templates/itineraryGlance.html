@@ -1,13 +1,13 @@
 <div ng-include=" '/views/partials/itinerary.html' "></div>
-<div class="container infoDiv">
+<div class="container infoDiv trips center">
 <div class="printable">
     <div>
         <h1>{{ig.thisTrip.data.tripDestination}}<br/>{{ig.thisTrip.data.leaveDate | date}}-{{ig.thisTrip.data.returnDate | date}}
         </h1>
     </div>
     <div class="allTables">
-        <div layout-sm="column" layout="rows">
-        <table flex="50" class="table">
+        <div layout="column">
+        <table flex="70" class="table">
             <thead>
                 <tr>
                     <th colspan=7> Transportation at a Glance</th>
@@ -62,8 +62,8 @@
             </tbody>
         </table>
         </div>
-        <div layout-sm="column" layout="row">
-        <table flex="50" class="table">
+        <div layout="column">
+        <table flex="70" class="table">
             <thead>
                 <tr>
                     <th colspan=7> Activities at a Glance</th>
