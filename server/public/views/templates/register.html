@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <h1 class="lead">Register User</h1>
   <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
   <form ng-submit="lc.registerUser()">
@@ -14,4 +14,34 @@
     <a href="#home">Cancel</a>
   </form>
 
+</div>
+ -->
+
+<div class="logIn">
+  <md-content>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text layout="center">
+          <h1 class="md-headline">Register User</h1>
+        </md-card-title-text>
+      </md-card-title>
+      <form ng-submit="lc.registerUser()">
+        <div layout="column">
+          <md-input-container>
+            <label for="username">Username:</label>
+            <input flex="50" type="text" ng-model="lc.user.username" />
+          </md-input-container>
+          <md-input-container>
+            <label for="password">Password:</label>
+            <input flex="50" type="password" ng-model="lc.user.password" />
+          </md-input-container>
+          <p class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</p>
+        </div>
+        <div>
+          <md-button class="md-raised md-primary" type="submit" name="submit" value="Register">Register</md-button>
+          <a href="#home">Cancel</a>
+        </div>
+      </form>
+    </md-card>
+  </md-content>
 </div>

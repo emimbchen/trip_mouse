@@ -37,27 +37,30 @@ myApp.service('UserService', function($http, $location){
 
   //calculates total cost and cost per person for confirmed details
   function calculateCosts(arrayIn){
+    console.log(arrayIn);
+    var total = 0; 
     if(arrayIn.length === 0){
-      // console.log('array has no length');
+      console.log('array has no length');
       return 0;
     }
-    var travellers = self.currentTrip.data.travellers;
+    else { var travellers = self.currentTrip.data.travellers;
     for( var i = 0; i < arrayIn.length; i++){
-      // console.log(arrayIn);
-      var total = 0; 
+      console.log(arrayIn[i]);
+      
       if ( arrayIn[i].price.for === 'Total' ) {
         total += parseInt(arrayIn[i].price.cost);
-        // console.log("totalIn",parseInt(arrayIn[i].price.cost));
+        console.log("totalIn",parseInt(arrayIn[i].price.cost));
         
       }
       if ( arrayIn[i].price.for === 'Per Person') {
         total += arrayIn[i].price.cost * travellers;
-        // console.log("per person",parseInt(arrayIn[i].price.cost));
+        console.log("per person",parseInt(arrayIn[i].price.cost));
         
       }
-    // console.log('total', total);
-    return total;
+    console.log('total', total);
   }
+}
+    return total;
 }
 
   //sorts the confirmed details into respective categories
@@ -77,6 +80,8 @@ myApp.service('UserService', function($http, $location){
     var transportationTotal = calculateCosts(self.currentTrip.transportation);
     var lodgingTotal = calculateCosts(self.currentTrip.lodging);
     var activityTotal = calculateCosts(self.currentTrip.activity);
+    console.log('transportation', transportationTotal, 'lodging', lodgingTotal, 'activity', activityTotal);
+    
     self.currentTrip.totalCost = (transportationTotal + lodgingTotal + activityTotal);
     self.currentTrip.costPerPerson = (transportationTotal+ lodgingTotal + activityTotal)/ self.currentTrip.data.travellers; 
   }

@@ -91,6 +91,10 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   });
   };
 
+  //function to close dialogs
+  vm.cancel = function(){
+    $mdDialog.cancel();
+  }
   //edit general trip object
   vm.editTrip = function (objectTosend) {
     $http.put('/trip/' + tripId, objectTosend).then(function (response) {
@@ -107,6 +111,8 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   //which action in switch: edit, delete, add, confirm, unconfirm
   //detail id: id of the specific detail (necessary for edit and delete)
   vm.newDetail = function(objectTosend, type, action, detailId) {
+    console.log(objectTosend);
+    
     if(action == 'confirm') {
       objectTosend.confirmed = true;
       console.log('is it true? ', objectTosend);     

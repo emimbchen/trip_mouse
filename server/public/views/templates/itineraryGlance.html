@@ -53,7 +53,7 @@
                 <tr ng-repeat="lodging in ig.thisTrip.lodging | orderBy: 'checkIn'">
                     <td>{{lodging.name}}</td>
                     <td>{{lodging.checkIn | date}}</td>
-                    <td>{{lodging.checkOut | date: 'shortTime'}}</td>
+                    <td>{{lodging.checkOut | date}}</td>
                     <td>{{lodging.address}}</td>
                     <td>{{lodging.phoneNumber}}</td>
                     <td>{{lodging.details}}</td>

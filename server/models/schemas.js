@@ -21,7 +21,7 @@ var LodgingSchema = new Schema({
     checkIn: Date,
     checkOut: Date,
     address: String,
-    phoneNumber: { type: Number, default: 0 },
+    phoneNumber: String,
     website: String,
     price: Object,
     details: String,

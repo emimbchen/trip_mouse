@@ -8,7 +8,9 @@
       <table class="table">
         <tbody>
           <tr ng-repeat="event in id.thisTrip.dateArray track by $index" >
+
             <td><span class="dailyTitles">{{event.date | date: fullDate}}</span>
+              <br/>
               <div ng-repeat="transportation in event.transportations track by $index">
                 <span>Transportation- {{transportation.type.type}}: {{transportation.from}}-{{transportation.to}}<br/>
                 {{transportation.leaveTime | date: 'shortTime'}}-{{transportation.arriveTime | date: 'shortTime'}}<br/>

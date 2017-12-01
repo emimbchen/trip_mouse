@@ -94,6 +94,15 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/technologies', {
+      templateUrl: 'views/templates/tech.html',
+      controller: 'LoginController as lc',
+      resolve:{
+        getuser: function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });
