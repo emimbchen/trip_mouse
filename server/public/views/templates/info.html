@@ -1,5 +1,15 @@
 <div ng-include="'views/partials/tripnav.html'"></div>
 <div class="trips">
+
+    <!-- map -->
+    <div layout="row">
+        <ng-map flex center="[{{ic.userService.currentTrip.data.tripDestination}}]" zoom="14" id="mapTest">
+            <marker position="[{{}}]"></marker>
+        </ng-map>
+    </div>
+    <!-- map -->
+
+
     <!-- title and info -->
     <div class="infoDiv">
         <div  ng-hide="ic.showEdit">
@@ -114,7 +124,7 @@
 
                                 <md-input-container>
                                     <label>Notes:</label>
-                                <input type="text" ng-model="transportation.details">
+                                <textarea rows="4" cols="30" type="text" ng-model="transportation.details"></textarea>
                                 </md-input-container>
 
                                 <md-card-actions layout="row" layout-align="start center">

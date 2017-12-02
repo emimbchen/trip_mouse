@@ -21,6 +21,8 @@ var LodgingSchema = new Schema({
     checkIn: Date,
     checkOut: Date,
     address: String,
+    lat: Number,
+    long: Number,
     phoneNumber: String,
     website: String,
     price: Object,
@@ -32,6 +34,8 @@ var LodgingSchema = new Schema({
 var ActivitiesSchema = new Schema({
     activity: String,
     where: String,
+    lat: Number,
+    long: Number,
     when: Date,
     website: String,
     price: Object,

@@ -5,29 +5,37 @@
     <h2>Current Trips</h2>
     <div layout="column" layout-align="center center">
     <md-card  flex="40" class="tripCards" ng-repeat="trip in uc.tripObject.currentTrips">
-        <md-card-header>
+        <md-card-header layout-sm="column">
+            <div>
             <md-card-header-text>
                 <span class="md-title">{{trip.tripDestination}}</span>
                 <span class="md-subhead"> {{trip.leaveDate | date}} - {{trip.returnDate | date}}
                 </span>
             </md-card-header-text>
+            </div>
+            <div>
             <md-button class="md-raised md-warn" ng-click="uc.showConfirm($event, trip._id)">Delete</md-button>
             <md-button class="md-raised md-primary" ng-href="#/info/{{trip._id}}">Select
             </md-button>
+            </div>
         </md-card-header>
     </md-card>
     </div>
     <h2>Past Trips</h2>
     <div layout="column" layout-align="center center">
 <md-card  flex="40" class="tripCards" ng-repeat="trip in uc.tripObject.pastTrips">
-    <md-card-header>
+    <md-card-header layout-sm="column">
+        <div>
         <md-card-header-text>
             <span class="md-title">{{trip.tripDestination}}</span>
             <span class="md-subhead"> {{trip.leaveDate | date}} - {{trip.returnDate | date}}
             </span>
         </md-card-header-text>
+        </div>
+        <div>
         <md-button class="md-raised md-warn" ng-click= "uc.showConfirm($event, trip._id)">Delete</md-button>
         <md-button class="md-raised md-primary" ng-href="#/info/{{trip._id}}">Select</md-button>
+        </div>
     </md-card-header>
 </md-card>
 </div>
