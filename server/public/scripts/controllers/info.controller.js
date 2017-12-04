@@ -74,6 +74,24 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
     })
   }
 
+  //experiemental var
+  // vm.latLng;
+
+  // //geocode experiment
+  // function searchAddress(address, detailId) {
+  //   var geocoder = new google.maps.Geocoder();
+  //   geocoder.geocode({ address: address }, function (results, status) {
+  //     if (status == google.maps.GeocoderStatus.OK) {
+  //       var lat = results[0].geometry.location.lat();
+  //       var lng = results[0].geometry.location.lng();
+  //       console.log(address, ':', lat, lng);
+  //       vm.latLng.push({ detailId: detailId, lat: lat, lng: lng });
+  //       console.log(vm.latLng);
+        
+  //     }
+  //   })
+  // }
+
   //function to show confirmation for detail delete
   vm.showConfirm = function (ev, objectTosend, type, action, detailId){
     console.log(objectTosend, type, action, detailId);
@@ -115,7 +133,15 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
     
     if(action == 'confirm') {
       objectTosend.confirmed = true;
-      console.log('is it true? ', objectTosend);     
+      console.log('is it true? ', objectTosend);
+      // if(type === 'lodging'){
+      //   console.log('lodging geo');
+      //   searchAddress(objectTosend.address, detailId);
+      // } 
+      // if(type === 'activities'){
+      //   console.log('acvitivies geo');
+      //   searchAddress(objectTosend.where, detailId);
+      // }    
     }
     if(action == 'unconfirm'){
       objectTosend.confirmed= false;

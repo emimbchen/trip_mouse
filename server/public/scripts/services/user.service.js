@@ -49,7 +49,7 @@ myApp.service('UserService', function($http, $location){
       
       if ( arrayIn[i].price.for === 'Total' ) {
         total += parseInt(arrayIn[i].price.cost);
-        console.log("totalIn",parseInt(arrayIn[i].price.cost));
+        console.log("total In",parseInt(arrayIn[i].price.cost));
         
       }
       if ( arrayIn[i].price.for === 'Per Person') {

@@ -1,10 +1,11 @@
 <div ng-include="'views/partials/tripnav.html'"></div>
 <div class="trips">
 
+{{ic.latLng}}
     <!-- map -->
     <div layout="row">
-        <ng-map flex center="[{{ic.userService.currentTrip.data.tripDestination}}]" zoom="14" id="mapTest">
-            <marker position="[{{}}]"></marker>
+        <ng-map flex center="[{{ic.userService.currentTrip.data.tripDestination}}]" zoom="8" id="mapTest">
+            <!-- <marker ng-repeat="geo in ic.latLng" position="[{{geo.lat}}, {{geo.lng}}]"></marker> -->
         </ng-map>
     </div>
     <!-- map -->
@@ -18,7 +19,6 @@
                 <br/>
                 <span id="dates">{{ic.userService.currentTrip.data.leaveDate | date}} - {{ic.userService.currentTrip.data.returnDate | date}}</span>
             </h1>
-            
             <div layout="row">
                 <h3>Travellers: {{ic.userService.currentTrip.data.travellers}}</h3>
                 <h3>Cost Per Person: {{ic.userService.currentTrip.costPerPerson}}</h3>
@@ -47,7 +47,7 @@
             <md-tab label="Transportations">
                 <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced($event)">New Transportation</md-button>
-                    <md-card flex="45" ng-repeat="transportation in ic.userService.currentTrip.data.transportation track by $index">
+                    <md-card flex="50" ng-repeat="transportation in ic.userService.currentTrip.data.transportation track by $index">
                         <!-- div for nonedit mode -->
                         <div ng-hide = "ic.selectedDetail === $index" >
                         <md-card-header>
@@ -66,7 +66,7 @@
                             <p>Cost: {{transportation.price.cost | currency}} {{transportation.price.for}}</p>
                             <p>Notes: {{transportation.details}}</p>
                             </md-content>
-                            <md-card-actions layout-sm="column" layout-md="column" layout="row" layout-align="start center">
+                            <md-card-actions layout-sm="column" layout="row" layout-align="start center">
                                 <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
                                 <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, transportation, 'transportation', 'delete', transportation._id)">Delete</md-button>
                                 <md-button ng-hide="transportation.confirmed" class="md-primary md-raised" ng-click="ic.newDetail(transportation, 'transportation', 'confirm', transportation._id)">Add To Itinerary</md-button>
@@ -145,7 +145,7 @@
            <md-tab label="Lodgings">
                <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced1($event)">New Lodging</md-button>
-                    <md-card flex="45" ng-repeat="lodging in ic.userService.currentTrip.data.lodging track by $index">
+                    <md-card flex="50" ng-repeat="lodging in ic.userService.currentTrip.data.lodging track by $index">
                     <!-- div for nonedit mode -->
                     <div ng-hide="ic.selectedDetail === $index">
                         <md-card-header>
@@ -169,7 +169,7 @@
                                 <p>Cost per Night: {{lodging.price.cost}} {{lodging.price.for}}</p>
                                 <p>Notes: {{lodging.details}}</p>
                                 </md-content>
-                                <md-card-actions layout-md= "column" layout-sm="column" layout="row" layout-align="start center">
+                                <md-card-actions layout-sm="column" layout="row" layout-align="start center">
                                     <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
                                     <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, lodging, 'lodging', 'delete', lodging._id)">Delete</md-button>
                                     <md-button ng-hide="lodging.confirmed" class="md-primary md-raised" ng-click="ic.newDetail(lodging, 'lodging', 'confirm', lodging._id)">Add To Itinerary</md-button>
@@ -229,7 +229,7 @@
 <md-tab label="Activities">
     <md-content class="tabDiv">
         <md-button class="md-primary md-raised" ng-click="ic.showAdvanced2($event)">New Activity</md-button>
-        <md-card flex="45" ng-repeat="activity in ic.userService.currentTrip.data.activities track by $index">
+        <md-card flex="50" ng-repeat="activity in ic.userService.currentTrip.data.activities track by $index">
             <!-- div for nonedit mode -->
             <div ng-hide="ic.selectedDetail === $index">
                 <md-card-header>
@@ -251,7 +251,7 @@
                     <p> Cost: {{activity.price.cost}} {{activity.price.for}}</p>
                     <p>Notes: {{activity.details}}</p>
                     </md-content>
-                    <md-card-actions layout-md="column" layout-sm="column" layout="row" layout-align="start center">
+                    <md-card-actions layout-sm="column" layout="row" layout-align="start center">
                         <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
                         <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, activity, 'activities', 'delete', activity._id)">Delete</md-button>
                         <md-button ng-hide="activity.confirmed" class="md-primary md-raised" ng-click="ic.newDetail(activity, 'activities', 'confirm', activity._id)">Add To Itinerary</md-button>
