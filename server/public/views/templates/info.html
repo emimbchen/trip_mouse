@@ -66,7 +66,7 @@
                             <p>Cost: {{transportation.price.cost | currency}} {{transportation.price.for}}</p>
                             <p>Notes: {{transportation.details}}</p>
                             </md-content>
-                            <md-card-actions layout-sm="column" layout="row" layout-align="start center">
+                            <md-card-actions layout-sm="column" layout-md="column" layout="row" layout-align="start center">
                                 <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
                                 <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, transportation, 'transportation', 'delete', transportation._id)">Delete</md-button>
                                 <md-button ng-hide="transportation.confirmed" class="md-primary md-raised" ng-click="ic.newDetail(transportation, 'transportation', 'confirm', transportation._id)">Add To Itinerary</md-button>
@@ -169,7 +169,7 @@
                                 <p>Cost per Night: {{lodging.price.cost}} {{lodging.price.for}}</p>
                                 <p>Notes: {{lodging.details}}</p>
                                 </md-content>
-                                <md-card-actions layout-sm="column" layout="row" layout-align="start center">
+                                <md-card-actions layout-md= "column" layout-sm="column" layout="row" layout-align="start center">
                                     <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
                                     <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, lodging, 'lodging', 'delete', lodging._id)">Delete</md-button>
                                     <md-button ng-hide="lodging.confirmed" class="md-primary md-raised" ng-click="ic.newDetail(lodging, 'lodging', 'confirm', lodging._id)">Add To Itinerary</md-button>
@@ -251,7 +251,7 @@
                     <p> Cost: {{activity.price.cost}} {{activity.price.for}}</p>
                     <p>Notes: {{activity.details}}</p>
                     </md-content>
-                    <md-card-actions layout-sm="column" layout="row" layout-align="start center">
+                    <md-card-actions layout-md="column" layout-sm="column" layout="row" layout-align="start center">
                         <md-button class="md-raised" ng-click="ic.editDetail($index)">Edit</md-button>
                         <md-button class="md-raised md-warn" ng-click="ic.showConfirm($event, activity, 'activities', 'delete', activity._id)">Delete</md-button>
                         <md-button ng-hide="activity.confirmed" class="md-primary md-raised" ng-click="ic.newDetail(activity, 'activities', 'confirm', activity._id)">Add To Itinerary</md-button>
