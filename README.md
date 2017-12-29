@@ -2,7 +2,7 @@
 
 Trip Mouse is a full-stack web application that serves as your trip organization assistant. Users are able to log into their account and store, remove, and confirm potential hotel, transportation, and activity plans in an organized interface. Once you mark your plans as confirmed, Trip Mouse automatically populates your itinerary in a print friendly format. TripMouse also provides a google map of the user's trip destination for reference, and automatically calculates the cost ofthe trip as the user builds their itinerary.
 
-tripmouse.herokuapp.com
+[TripMouse](tripmouse.herokuapp.com)
 
 ## Built With
 - MongoDB
@@ -30,7 +30,7 @@ You should now be able to register and log into the application.
 
 ## Documentation
 
-https://docs.google.com/document/d/1cmEdZrM9jIBlaDdukiBP6dBZ0te860wREupz8szZD4U/edit?usp=sharing
+(https://docs.google.com/document/d/1cmEdZrM9jIBlaDdukiBP6dBZ0te860wREupz8szZD4U/edit?usp=sharing)
 
 ### Completed Features
 
