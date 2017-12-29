@@ -45,7 +45,7 @@
             <md-tab label="Transportations">
                 <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced($event)">New Transportation</md-button>
-                    <md-card flex="50" ng-repeat="transportation in ic.userService.currentTrip.data.transportation track by $index">
+                    <md-card flex="50" ng-repeat="transportation in ic.userService.currentTrip.data.transportation">
                         <!-- div for nonedit mode -->
                         <div ng-hide = "ic.selectedDetail === $index" >
                         <md-card-header>
@@ -88,7 +88,7 @@
                                     <md-input-container>
                                         <label>Form of Transportation: </label>
                                         <md-select ng-model="transportation.type">
-                                            <md-option ng-value= "type.type" ng-repeat="type in ic.transportOptions">
+                                            <md-option ng-value= "type" ng-repeat="type in ic.transportOptions">
                                                 {{type.type}}
                                             </md-option>
                                         </md-select>
