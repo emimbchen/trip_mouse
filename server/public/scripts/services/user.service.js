@@ -106,7 +106,7 @@ myApp.service('UserService', function ($http, $location) {
   function sortingTransportations(detailArray) {
     for (var j = 0; j < detailArray.length; j++) {
       detailArray[j].leaveTime = new Date(detailArray[j].leaveTime);
-      detailArray[j].arriveTime = new Date(detailArray[j].leaveTime);
+      detailArray[j].arriveTime = new Date(detailArray[j].arriveTime);
       var currentDetail = detailArray[j];
       for (var n = 0; n < self.currentTrip.dateArray.length; n++) {
         if (currentDetail.date === (self.currentTrip.dateArray[n].date).toISOString()) {
