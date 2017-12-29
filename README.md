@@ -1,57 +1,60 @@
 # Trip Mouse
 
-One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.
+Trip Mouse is a full-stack web application that serves as your trip organization assistant. Users are able to log into their account and store, remove, and confirm potential hotel, transportation, and activity plans in an organized interface. Once you mark your plans as confirmed, Trip Mouse automatically populates your itinerary in a print friendly format. TripMouse also provides a google map of the user's trip destination for reference, and automatically calculates the cost ofthe trip as the user builds their itinerary.
 
 ## Built With
-
-List technologies and frameworks here
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+- MongoDB
+- Express.js
+- AngularJS
+- Node.js
+- AngularJS Material
+- Passport
+- Moment.js
+- Google Places 
+- Heroku
 
 ### Prerequisites
 
-Link to software that is required to install the app (e.g. node).
-
 - [Node.js](https://nodejs.org/en/)
-- List other prerequisites here
-
 
 ### Installing
 
-Steps to get the development environment running.
+1. Fork or clone this repository
+2. Run npm install
+3. Run npm start
+4. Visit http://localhost:5000 in your browser
 
-## Screen Shot
-
-Include one or two screen shots of your project here (optional). Remove if unused.
+You should now be able to register and log into the application. 
 
 ## Documentation
 
-Link to a read-only version of your scope document or other relevant documentation here (optional). Remove if unused.
+https://docs.google.com/document/d/1cmEdZrM9jIBlaDdukiBP6dBZ0te860wREupz8szZD4U/edit?usp=sharing
 
 ### Completed Features
 
 High level list of items completed.
 
-- [x] Feature a
-- [x] Feature b
+- [x] New trip form
+- [x] User Trip page and trip sorting (sorts according to today's date)
+- [x] Trip Planning page with all post, put, delete, get routes
+- [x] All Trip planning dialog boxes
+- [x] Detail confirmation abilities
+- [x] Confirmed detail prices are calculated (total and per person)
+- [x] Daily itinerary view
+- [x] At a glace itinerary view
+- [x] CSS print style sheet
+- [x] Google Map on planning page
 
 ### Next Steps
 
-Features that you would like to add at some point in the future.
-
-- [ ] Feature c
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+- [ ] Automatic daily cost calculation to hotel details
+- [ ] Markers on map for each confirmed location
+- [ ] Reusable base packing list
+- [ ] Ability to edit packing list per trip
+- [ ] Users can share their itinerary with other TripMouse Users
+- [ ] Other users can search trips and star them to save them
+- [ ] Users can reset forgotten passwords
 
 ## Authors
 
 * Emi Chen
-
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
