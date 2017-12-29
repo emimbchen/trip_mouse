@@ -159,7 +159,6 @@ router.put('/lodging/:id', function (req, res) {
     var id = req.params.id;
     var lodgingOb = req.body;
     lodgingOb.kind = 'lodging'; 
-    console.log(lodgingOb);
     switch (lodgingOb.action) {
         case 'edit':
             Trip.findOneAndUpdate({ "_id": id, "lodging._id": lodgingOb.detailId },
@@ -248,7 +247,6 @@ router.put('/activities/:id', function (req, res) {
     var id = req.params.id;
     var activityOb = req.body;
     activityOb.kind = 'activity';
-    console.log(activityOb);
     switch (activityOb.action) {
         case 'edit':
             Trip.findOneAndUpdate({ "_id": id, "activities._id": activityOb.detailId },
@@ -334,7 +332,6 @@ router.put('/activities/:id', function (req, res) {
 //route to delete an entire trip
 router.delete('/:id', function(req, res){
     var id = req.params.id;
-    console.log(id);
     Trip.findByIdAndRemove({_id: id}, function(err, trip){
         if (err){
             console.log(err);
@@ -344,11 +341,5 @@ router.delete('/:id', function(req, res){
         }
     });
 });
-
-
-
-
-
-
 
 module.exports = router ;

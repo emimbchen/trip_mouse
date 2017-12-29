@@ -1,5 +1,4 @@
 myApp.controller('itineraryGlanceController', function (UserService, $routeParams) {
-    console.log('itineraryGlanceController created');
     var self = this;
     self.userService = UserService;
     //current trip id

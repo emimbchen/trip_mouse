@@ -1,5 +1,4 @@
 myApp.controller('UserController', function(UserService, $http, $mdDialog) {
-  console.log('UserController created');
   var vm = this;
   vm.userService = UserService;
   vm.userObject = UserService.userObject;
@@ -16,11 +15,10 @@ myApp.controller('UserController', function(UserService, $http, $mdDialog) {
 
   //route to delete this trip deletes entire trip
   vm.deleteTrip = function (tripId) {
-    console.log(tripId);
     $http.delete('/trip/'+ tripId).then(function (response) {
       vm.getTrips();
     }).catch(function (error) {
-      console.log('delete not sent');
+      console.log('delete not sent', error);
     })
   }
 

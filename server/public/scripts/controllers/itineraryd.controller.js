@@ -1,5 +1,4 @@
 myApp.controller('itineraryDailyController', function (UserService, $routeParams, $filter) {
-    console.log('itineraryDailyController created');
     var self = this;
     self.userService = UserService;
     //current trip id

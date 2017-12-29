@@ -1,7 +1,5 @@
 <div ng-include="'views/partials/tripnav.html'"></div>
 <div class="trips">
-
-{{ic.latLng}}
     <!-- map -->
     <div layout="row">
         <ng-map flex center="[{{ic.userService.currentTrip.data.tripDestination}}]" zoom="8" id="mapTest">
@@ -21,8 +19,8 @@
             </h1>
             <div layout="row">
                 <h3>Travellers: {{ic.userService.currentTrip.data.travellers}}</h3>
-                <h3>Cost Per Person: {{ic.userService.currentTrip.costPerPerson}}</h3>
-                <h3>Total Cost: {{ic.userService.currentTrip.totalCost}}</h3>
+                <h3>Cost Per Person: {{ic.userService.currentTrip.costPerPerson | currency}}</h3>
+                <h3>Total Cost: {{ic.userService.currentTrip.totalCost | currency}}</h3>
             </div>
         </div>
 
@@ -90,7 +88,7 @@
                                     <md-input-container>
                                         <label>Form of Transportation: </label>
                                         <md-select ng-model="transportation.type">
-                                            <md-option ng-value= "type" ng-repeat="type in ic.transportOptions">
+                                            <md-option ng-value= "type.type" ng-repeat="type in ic.transportOptions">
                                                 {{type.type}}
                                             </md-option>
                                         </md-select>
