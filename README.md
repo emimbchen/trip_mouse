@@ -30,7 +30,7 @@ You should now be able to register and log into the application.
 
 ## Documentation
 
-[documentation](https://docs.google.com/document/d/1cmEdZrM9jIBlaDdukiBP6dBZ0te860wREupz8szZD4U/edit?usp=sharing)
+[Scope](https://docs.google.com/document/d/1cmEdZrM9jIBlaDdukiBP6dBZ0te860wREupz8szZD4U/edit?usp=sharing)
 
 ### Completed Features
 
