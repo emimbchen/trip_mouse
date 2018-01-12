@@ -4,16 +4,16 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngM
 myApp.config(function($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
   $routeProvider
-    .when('/home', {
-      templateUrl: '/views/templates/home.html',
+    .when('/login', {
+      templateUrl: '/views/templates/login.html',
       controller: 'LoginController as lc',
     })
     .when('/register', {
       templateUrl: '/views/templates/register.html',
       controller: 'LoginController as lc'
     })
-    .when('/user', {
-      templateUrl: '/views/templates/user.html',
+    .when('/userhome', {
+      templateUrl: '/views/templates/userhome.html',
       controller: 'UserController as uc',
       resolve: {
         getuser : function(UserService){
@@ -21,9 +21,9 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/info/:tripId', {
-      templateUrl: '/views/templates/info.html',
-      controller: 'InfoController as ic',
+    .when('/planning/:tripId', {
+      templateUrl: '/views/templates/planning.html',
+      controller: 'PlanningController as ic',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
@@ -50,7 +50,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/tripnav', {
       templateUrl: 'views/partials/tripnav.html',
-      controller: 'InfoController as ic',
+      controller: 'PlanningController as ic',
       resolve: {
         getuser: function(UserService){
           return UserService.getuser();
@@ -103,6 +103,6 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .otherwise({
-      redirectTo: 'home'
+      redirectTo: 'login'
     });
 });

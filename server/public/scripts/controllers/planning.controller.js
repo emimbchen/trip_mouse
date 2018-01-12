@@ -1,4 +1,4 @@
-myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams, $http, $location) {
+myApp.controller('PlanningController', function(UserService, $mdDialog, $routeParams, $http, $location) {
   var vm = this;
   //variables
   vm.userService = UserService;
@@ -51,7 +51,7 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   vm.showAdvanced = function(ev){
     $mdDialog.show({
       templateUrl: '../views/partials/dialog1.html',
-      controller: 'InfoController as ic',
+      controller: 'PlanningController as ic',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,
@@ -61,7 +61,7 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   vm.showAdvanced1 = function (ev) {
     $mdDialog.show({
       templateUrl: '../views/partials/dialog2.html',
-      controller: 'InfoController as ic',
+      controller: 'PlanningController as ic',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,
@@ -71,7 +71,7 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
   vm.showAdvanced2 = function (ev) {
     $mdDialog.show({
       templateUrl: '../views/partials/dialog3.html',
-      controller: 'InfoController as ic',
+      controller: 'PlanningController as ic',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose: true,
@@ -140,7 +140,7 @@ myApp.controller('InfoController', function(UserService, $mdDialog, $routeParams
       // if(type === 'activities'){
       //   console.log('acvitivies geo');
       //   searchAddress(objectTosend.where, detailId);
-      // }    
+      // }
     }
     if(action == 'unconfirm'){
       objectTosend.confirmed= false;

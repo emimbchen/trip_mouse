@@ -3,7 +3,7 @@
     <md-content  class="tabDiv">
         <md-card>
         <form id="newTripForm" name="newTripForm" layout="column">
-            <h1>New Trip!</h1>
+            <h1>Create A New Trip</h1>
             <md-input-container>
                 <label>Destination: </label>
                 <input ng-model="nc.tripToSend.tripDestination" required type="text" name="destination">
@@ -21,7 +21,7 @@
                 <md-datepicker ng-model="nc.tripToSend.leaveDate" required md-placeholder="Leave Date"></md-datepicker>
                 <md-datepicker ng-model="nc.tripToSend.returnDate" required md-placeholder="Return Date"></md-datepicker>
                 <div>
-                    <a href="#/user">Cancel</a>
+                    <a href="#/userhome">Cancel</a>
                     <md-button type="submit" class="md-raised md-primary" ng-click="nc.submitTrip(nc.tripToSend)">Make My Trip!</md-button>
                 </div>
         </form>

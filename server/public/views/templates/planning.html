@@ -42,7 +42,7 @@
     <md-content class="tabDiv">
         <md-tabs class="tabDiv">
             <!-- transportation section -->
-            <md-tab label="Transportations">
+            <md-tab ng-click="ic.setItem('null')" label="Transportations">
                 <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced($event)">New Transportation</md-button>
                     <md-card flex="50" ng-repeat="transportation in ic.userService.currentTrip.data.transportation">
@@ -140,7 +140,7 @@
 
 
             <!-- new -->
-           <md-tab label="Lodgings">
+           <md-tab ng-click="ic.setItem('null')" label="Lodgings">
                <md-content class="tabDiv">
                     <md-button class="md-primary md-raised" ng-click="ic.showAdvanced1($event)">New Lodging</md-button>
                     <md-card flex="50" ng-repeat="lodging in ic.userService.currentTrip.data.lodging track by $index">
@@ -224,7 +224,7 @@
 
 
 
-<md-tab label="Activities">
+<md-tab ng-click="ic.setItem('null')" label="Activities">
     <md-content class="tabDiv">
         <md-button class="md-primary md-raised" ng-click="ic.showAdvanced2($event)">New Activity</md-button>
         <md-card flex="50" ng-repeat="activity in ic.userService.currentTrip.data.activities track by $index">
