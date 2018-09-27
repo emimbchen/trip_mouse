@@ -13,6 +13,8 @@ var TransportationSchema = new Schema({
     details: String,
     confirmed: { type: Boolean, default: false }
 
+},{
+    usePushEach: true
 });
 
 //nested lodging schema
@@ -28,6 +30,8 @@ var LodgingSchema = new Schema({
     price: Object,
     details: String,
     confirmed: { type: Boolean, default: false }
+},{
+    usePushEach: true
 });
 
 //nested activities schema
@@ -41,6 +45,8 @@ var ActivitiesSchema = new Schema({
     price: Object,
     details: String,
     confirmed: {type: Boolean, default: false}
+},{
+    usePushEach: true
 });
 
 //trip collection schema
@@ -53,6 +59,8 @@ var TripSchema = new Schema({
     transportation: [TransportationSchema],
     lodging: [LodgingSchema],
     activities: [ActivitiesSchema]
+},{
+    usePushEach: true
 });
 
 
