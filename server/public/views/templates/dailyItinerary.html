@@ -1,33 +1,41 @@
 <div class="do-not-print" ng-include=" '/views/partials/itinerary2.html' "></div>
 <div class="container infoDiv center">
   <div>
+    <!-- title of trip & dates -->
     <h1>{{id.thisTrip.data.tripDestination}}
       <br/>{{id.thisTrip.data.leaveDate | date}}-{{id.thisTrip.data.returnDate | date}}
     </h1>
     <md-table-container>
       <table class="table">
         <tbody>
+          <!-- repeat over array of dates -->
           <tr ng-repeat="event in id.thisTrip.dateArray track by $index" >
 
             <td><span class="dailyTitles">{{event.date | date: fullDate}}</span>
               <br/>
+              <!-- transportations -->
               <div ng-repeat="transportation in event.transportations track by $index">
-                <span>Transportation- {{transportation.type.type}}: {{transportation.from}}-{{transportation.to}}<br/>
+                <span>
+                Transportation- {{transportation.type.type}}: {{transportation.from}}-{{transportation.to}}<br/>
                 {{transportation.leaveTime | date: 'shortTime'}}-{{transportation.arriveTime | date: 'shortTime'}}<br/>
                 Notes: {{transportation.details}}
               </span>
               </div>
               <br/>
+              <!-- lodgings -->
               <div ng-repeat="lodging in event.lodgings track by $index">
-                <span>Lodging- {{lodging.name}} <br/> {{lodging.address}} 
+                <span>
+                  Lodging- {{lodging.name}} <br/> {{lodging.address}} 
                   <br/>{{lodging.checkIn | date}}-{{lodging.checkOut | date}}
                   <br/>Phone Number: {{lodging.PhoneNumber}} <br/>
                   Notes: {{lodging.details}}
                 </span>
               </div>
               <br/>
+              <!-- activities -->
               <div ng-repeat="activity in event.activities track by $index">
-                <span>{{activity.activity}}
+                <span>
+                  {{activity.activity}}
                   <br/> {{activity.where}}
                   <br/> Notes: {{activity.details}}
                 </span>
